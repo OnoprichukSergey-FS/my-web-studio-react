@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>FixRight Repairs – Home & Appliance Repair Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: #f3f4f6;
+        color: #020617;
+      }
+
+      /* HEADER */
+
+      header {
+        background: #0b1120;
+        color: #f9fafb;
+        padding: 1rem 1.75rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .logo span {
+        color: #f97316;
+      }
+
+      nav a {
+        margin-left: 1.25rem;
+        text-decoration: none;
+        color: #cbd5f5;
+        font-size: 0.95rem;
+      }
+
+      nav a:hover {
+        color: #ffffff;
+      }
+
+      .btn {
+        border-radius: 999px;
+        padding: 0.55rem 1.3rem;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-primary {
+        background: #f97316;
+        color: #111827;
+        font-weight: 600;
+      }
+
+      .btn-primary:hover {
+        background: #ea580c;
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: #f97316;
+        border: 1px solid #f97316;
+      }
+
+      .btn-outline:hover {
+        background: #111827;
+        color: #fed7aa;
+        transform: translateY(-1px);
+      }
+
+      /* LAYOUT */
+
+      main {
+        padding: 2.5rem 1.5rem 3rem;
+      }
+
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      /* HERO */
+
+      .hero-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        gap: 2rem;
+        align-items: center;
+        margin-bottom: 2.75rem;
+      }
+
+      .hero h1 {
+        font-size: clamp(2rem, 3.1vw, 2.8rem);
+        margin: 0 0 0.75rem;
+      }
+
+      .hero p {
+        margin: 0 0 1.25rem;
+        color: #4b5563;
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .badge {
+        border-radius: 999px;
+        padding: 0.25rem 0.9rem;
+        background: #ffedd5;
+        color: #9a3412;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .hero-img {
+        position: relative;
+        border-radius: 26px;
+        overflow: hidden;
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.4);
+        aspect-ratio: 4 / 5;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .hero-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .hero-img::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(15, 23, 42, 0.5), transparent);
+        pointer-events: none;
+      }
+
+      /* SECTIONS */
+
+      section.section {
+        margin-bottom: 2.75rem;
+      }
+
+      section.section h2 {
+        margin: 0 0 0.25rem;
+        font-size: 1.3rem;
+      }
+
+      section.section p.lead {
+        margin: 0 0 1.5rem;
+        color: #6b7280;
+        font-size: 0.95rem;
+      }
+
+      /* SERVICES */
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 1.25rem 1.2rem;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      }
+
+      .card h3 {
+        margin: 0 0 0.4rem;
+      }
+
+      .card p {
+        margin: 0;
+        color: #4b5563;
+        font-size: 0.9rem;
+      }
+
+      .service-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0.5rem 0 0;
+        font-size: 0.9rem;
+        color: #4b5563;
+      }
+
+      .service-list li + li {
+        margin-top: 0.15rem;
+      }
+
+      /* WHY CHOOSE US */
+
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .why-item {
+        background: #020617;
+        color: #e5e7eb;
+        border-radius: 16px;
+        padding: 1.1rem 1.1rem;
+      }
+
+      .why-item h3 {
+        margin: 0 0 0.4rem;
+        font-size: 0.95rem;
+      }
+
+      .why-item p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #cbd5f5;
+      }
+
+      /* RECENT REPAIRS */
+
+      .projects-list {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .project-item {
+        background: #ffffff;
+        border-radius: 14px;
+        padding: 0.9rem 1rem;
+        box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+      }
+
+      .project-item h3 {
+        margin: 0 0 0.2rem;
+        font-size: 0.98rem;
+      }
+
+      .project-item p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #4b5563;
+      }
+
+      /* QUOTE FORM */
+
+      .quote-card {
+        background: #ffffff;
+        border-radius: 22px;
+        padding: 1.7rem 1.4rem;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.16);
+      }
+
+      .quote-card h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+      }
+
+      .quote-note {
+        font-size: 0.85rem;
+        color: #6b7280;
+        margin-bottom: 1.1rem;
+      }
+
+      .quote-form {
+        display: grid;
+        gap: 0.9rem;
+      }
+
+      .quote-form label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 0.2rem;
+      }
+
+      .quote-form input,
+      .quote-form select,
+      .quote-form textarea {
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+        padding: 0.55rem 0.75rem;
+        font: inherit;
+        box-sizing: border-box;
+      }
+
+      .quote-form textarea {
+        resize: vertical;
+        min-height: 90px;
+      }
+
+      .quote-actions {
+        margin-top: 0.75rem;
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .quote-demo-tag {
+        font-size: 0.8rem;
+        color: #6b7280;
+      }
+
+      /* FOOTER */
+
+      footer {
+        padding: 1.75rem 1.5rem 2rem;
+        text-align: center;
+        color: #9ca3af;
+        font-size: 0.85rem;
+        border-top: 1px solid #e5e7eb;
+        background: #f9fafb;
+      }
+
+      @media (max-width: 820px) {
+        main {
+          padding-inline: 1rem;
+        }
+
+        .hero-layout {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-img {
+          max-width: min(340px, 100%);
+          margin-top: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">Fix<span>Right</span> Repairs</div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#projects">Repairs</a>
+        <a href="#quote">Request a Quote</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container">
+        <!-- HERO -->
+        <section class="hero hero-layout">
+          <div>
+            <h1>Fast, honest home repairs you can rely on.</h1>
+            <p>
+              FixRight Repairs helps homeowners with leaks, clogs, appliances,
+              and small home fixes — so you can get back to normal without the
+              stress.
+            </p>
+
+            <div class="badge-row">
+              <span class="badge">Same-week appointments</span>
+              <span class="badge">Serving Orlando &amp; nearby</span>
+              <span class="badge">Upfront, flat-rate pricing</span>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#quote" class="btn btn-primary">Request a Quote</a>
+              <a href="#services" class="btn btn-outline">View Services</a>
+            </div>
+          </div>
+
+          <div class="hero-img">
+            <img
+              src="./service-hero.jpg"
+              alt="Technician fixing a sink drain under a kitchen cabinet"
+            />
+          </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section class="section" id="services">
+          <h2>Services</h2>
+          <p class="lead">
+            Core repair services designed for busy homeowners who just want
+            things working again.
+          </p>
+
+          <div class="services-grid">
+            <div class="card">
+              <h3>Plumbing &amp; Leaks</h3>
+              <ul class="service-list">
+                <li>Leaky sinks, faucets, and traps</li>
+                <li>Slow or clogged drains</li>
+                <li>Garbage disposal installs &amp; swaps</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Appliance Repair</h3>
+              <ul class="service-list">
+                <li>Washers &amp; dryers not starting or draining</li>
+                <li>Refrigerators not cooling properly</li>
+                <li>Dishwashers leaking or not cleaning</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3>Small Home Fixes</h3>
+              <ul class="service-list">
+                <li>Loose outlets, switches, &amp; hardware</li>
+                <li>Minor caulking &amp; touch-ups</li>
+                <li>Door adjustments &amp; small repairs</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- WHY CHOOSE US -->
+        <section class="section" id="why">
+          <h2>Why homeowners choose FixRight</h2>
+          <p class="lead">
+            Clear communication, honest recommendations, and tidy work — every
+            visit.
+          </p>
+
+          <div class="why-grid">
+            <div class="why-item">
+              <h3>Text updates &amp; arrival window</h3>
+              <p>Clients know exactly when we’re on the way to their home.</p>
+            </div>
+            <div class="why-item">
+              <h3>Upfront estimates</h3>
+              <p>
+                No surprise charges — you approve the price before work begins.
+              </p>
+            </div>
+            <div class="why-item">
+              <h3>Respect for your home</h3>
+              <p>
+                Shoe covers, clean drop cloths, and full cleanup after the job.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- RECENT REPAIRS -->
+        <section class="section" id="projects">
+          <h2>Recent Repairs</h2>
+          <p class="lead">
+            A few examples of jobs completed for local customers.
+          </p>
+
+          <div class="projects-list">
+            <article class="project-item">
+              <h3>Leaking kitchen sink – East Orlando</h3>
+              <p>
+                Replaced a worn P-trap and tightened loose fittings, then tested
+                under full flow for leaks.
+              </p>
+            </article>
+
+            <article class="project-item">
+              <h3>Washer not draining – Winter Park</h3>
+              <p>
+                Cleared a clogged drain pump, checked hoses, and ran a full test
+                cycle. Back to normal same day.
+              </p>
+            </article>
+
+            <article class="project-item">
+              <h3>Dishwasher leak – Conway</h3>
+              <p>
+                Installed a new door gasket, leveled the unit, and verified
+                everything stayed dry through a full cycle.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- QUOTE REQUEST (DEMO) -->
+        <section class="section" id="quote">
+          <h2>Request a Quote</h2>
+          <p class="lead">
+            This is an example of how a simple quote form could look on a real
+            client site.
+          </p>
+
+          <div class="quote-card">
+            <h3>Tell us about the issue (demo)</h3>
+            <p class="quote-note">
+              This form is for demo purposes only. Submissions from this page
+              are not collected.
+            </p>
+
+            <form class="quote-form">
+              <div>
+                <label for="name">Your Name</label>
+                <input id="name" type="text" placeholder="Jane Doe" />
+              </div>
+
+              <div>
+                <label for="phone">Phone Number</label>
+                <input id="phone" type="tel" placeholder="(555) 123-4567" />
+              </div>
+
+              <div>
+                <label for="service">Service Needed</label>
+                <select id="service">
+                  <option>Plumbing / Leak</option>
+                  <option>Appliance Repair</option>
+                  <option>Small Home Fix</option>
+                  <option>Something else</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="details">Brief description</label>
+                <textarea
+                  id="details"
+                  placeholder="Example: Leak under kitchen sink when the faucet runs..."
+                ></textarea>
+              </div>
+
+              <div class="quote-actions">
+                <button type="button" class="btn btn-primary">
+                  Submit Request (demo)
+                </button>
+                <span class="quote-demo-tag">Demo only – does not send.</span>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- BACK TO MAIN SITE -->
+        <section class="section" id="back">
+          <div style="text-align: center; margin-top: 2rem">
+            <a href="http://localhost:5173/" class="btn btn-primary">
+              ← Back to Main Website
+            </a>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      Demo home repair landing page created for portfolio purposes.
+    </footer>
+  </body>
+</html>

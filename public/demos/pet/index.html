@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pawfect Grooming – Pet Grooming Studio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        background: #f9fafc;
+        color: #111827;
+      }
+
+      header {
+        padding: 1.25rem 1.75rem;
+        background: #ffffff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 1px 4px rgba(15, 23, 42, 0.06);
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+
+      .logo {
+        font-weight: 700;
+        font-size: 1.1rem;
+      }
+
+      .logo span {
+        color: #f97373;
+      }
+
+      nav a {
+        margin-left: 1rem;
+        text-decoration: none;
+        color: #6b7280;
+        font-size: 0.95rem;
+      }
+
+      nav a:hover {
+        color: #111827;
+      }
+
+      .btn {
+        border-radius: 999px;
+        padding: 0.55rem 1.2rem;
+        border: none;
+        cursor: pointer;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-primary {
+        background: #f97373;
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #ef4444;
+        transform: translateY(-2px);
+      }
+
+      .btn-outline {
+        background: white;
+        color: #374151;
+        border: 1px solid #e5e7eb;
+      }
+
+      .btn-outline:hover {
+        background: #f3f4f6;
+        transform: translateY(-1px);
+      }
+
+      .hero {
+        max-width: 960px;
+        margin: 3rem auto 2rem;
+        padding: 0 1.5rem;
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .hero-img {
+        position: relative;
+        border-radius: 28px;
+        overflow: hidden;
+        aspect-ratio: 4 / 5;
+        max-width: 420px;
+        margin: 0 auto;
+        box-shadow: 0 10px 30px rgba(248, 113, 113, 0.18);
+      }
+
+      .hero-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .hero-img::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(255, 255, 255, 0.25),
+          transparent
+        );
+        pointer-events: none;
+      }
+
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-size: 0.8rem;
+        color: #9ca3af;
+        margin-bottom: 0.5rem;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 3vw, 2.6rem);
+        margin: 0 0 0.75rem;
+      }
+
+      .hero p {
+        margin: 0 0 1.25rem;
+        color: #4b5563;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+      }
+
+      .section {
+        max-width: 960px;
+        margin: 0 auto 3rem;
+        padding: 0 1.5rem;
+      }
+
+      .section h2 {
+        margin-bottom: 0.25rem;
+      }
+
+      .section p.lead {
+        color: #6b7280;
+        margin-top: 0;
+        margin-bottom: 1.5rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 1.25rem 1.2rem;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      }
+
+      .card h3 {
+        margin-top: 0;
+        margin-bottom: 0.4rem;
+      }
+
+      .card p {
+        margin: 0;
+        color: #6b7280;
+        font-size: 0.95rem;
+      }
+
+      .services-list {
+        list-style: none;
+        padding-left: 0;
+        margin: 0.6rem 0 0;
+        font-size: 0.9rem;
+        color: #4b5563;
+      }
+
+      .services-list li + li {
+        margin-top: 0.25rem;
+      }
+
+      .pill {
+        display: inline-block;
+        border-radius: 999px;
+        padding: 0.25rem 0.8rem;
+        background: #fee2e2;
+        color: #b91c1c;
+        font-size: 0.8rem;
+        margin-top: 0.75rem;
+      }
+
+      /* Booking demo section */
+
+      .booking-card {
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 1.75rem 1.5rem;
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+        max-width: 640px;
+        margin: 0 auto;
+      }
+
+      .booking-card h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+      }
+
+      .booking-note {
+        font-size: 0.85rem;
+        color: #9ca3af;
+        margin-bottom: 1.2rem;
+      }
+
+      .booking-form {
+        display: grid;
+        gap: 0.9rem;
+      }
+
+      .booking-form label {
+        display: block;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 0.2rem;
+      }
+
+      .booking-form input,
+      .booking-form select,
+      .booking-form textarea {
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+        padding: 0.55rem 0.75rem;
+        font: inherit;
+        box-sizing: border-box;
+      }
+
+      .booking-form textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      .booking-actions {
+        margin-top: 0.75rem;
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .booking-demo-tag {
+        font-size: 0.8rem;
+        color: #9ca3af;
+      }
+
+      .footer {
+        padding: 2rem 1.5rem;
+        text-align: center;
+        color: #9ca3af;
+        font-size: 0.85rem;
+        border-top: 1px solid #e5e7eb;
+        background: #f9fafb;
+      }
+
+      @media (max-width: 800px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-img {
+          margin-top: 1.5rem;
+          max-width: min(320px, 100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">Pawfect<span>Grooming</span></div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#booking">Booking</a>
+        <a href="#contact">Contact</a>
+        <a href="#booking" class="btn btn-primary">Book Now</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Pet Grooming Studio</div>
+          <h1>Gentle, low-stress grooming for dogs &amp; cats.</h1>
+          <p>
+            Pawfect Grooming is a small studio focused on kind, one-on-one care.
+            We keep visits calm, quick, and comfortable so pets (and their
+            humans) actually enjoy grooming day.
+          </p>
+          <div class="hero-actions">
+            <a href="#booking" class="btn btn-primary">Book an Appointment</a>
+            <a href="#services" class="btn btn-outline">View Services</a>
+          </div>
+        </div>
+
+        <div class="hero-img">
+          <img
+            src="./boney-dHIRbh9En6I-unsplash.jpg"
+            alt="Dog grooming at Pawfect Grooming Studio"
+          />
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <h2>Services</h2>
+        <p class="lead">
+          Simple packages that cover the essentials, with options for add-ons
+          depending on your pet’s needs.
+        </p>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Bath &amp; Brush</h3>
+            <p>For in-between cuts or short-coat pets.</p>
+            <ul class="services-list">
+              <li>Shampoo, blow dry &amp; brush-out</li>
+              <li>Nail trim &amp; ear cleaning</li>
+              <li>Light paw &amp; face tidy</li>
+            </ul>
+            <div class="pill">From $35</div>
+          </div>
+
+          <div class="card">
+            <h3>Full Groom</h3>
+            <p>Complete head-to-tail grooming.</p>
+            <ul class="services-list">
+              <li>Breed or lifestyle haircut</li>
+              <li>Sanitary trim &amp; paw pads</li>
+              <li>Nails, ears &amp; finishing spray</li>
+            </ul>
+            <div class="pill">From $55</div>
+          </div>
+
+          <div class="card">
+            <h3>Quick Add-Ons</h3>
+            <p>Fast walk-in services to keep pets comfy.</p>
+            <ul class="services-list">
+              <li>Nail trim or grind</li>
+              <li>Teeth brush &amp; breath spray</li>
+              <li>De-shedding treatment</li>
+            </ul>
+            <div class="pill">From $15</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Booking demo -->
+      <section class="section" id="booking">
+        <h2>Request an Appointment</h2>
+        <p class="lead">
+          A simple online form makes it easy for pet parents to request a date
+          and time that works for them.
+        </p>
+
+        <div class="booking-card">
+          <h3>Online Booking Form (demo)</h3>
+          <p class="booking-note">
+            This is an example of how online booking could look on your website.
+            Submissions on this demo are not collected.
+          </p>
+
+          <form class="booking-form">
+            <div>
+              <label for="pet-parent-name">Your Name</label>
+              <input id="pet-parent-name" type="text" placeholder="Jane Doe" />
+            </div>
+
+            <div>
+              <label for="pet-name">Pet’s Name</label>
+              <input id="pet-name" type="text" placeholder="Luna" />
+            </div>
+
+            <div>
+              <label for="service-type">Service</label>
+              <select id="service-type">
+                <option>Bath &amp; Brush</option>
+                <option>Full Groom</option>
+                <option>Nail Trim Only</option>
+                <option>Not sure – please recommend</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="preferred-date">Preferred Date</label>
+              <input id="preferred-date" type="date" />
+            </div>
+
+            <div>
+              <label for="notes">Notes about your pet</label>
+              <textarea
+                id="notes"
+                placeholder="Breed, coat length, any special needs..."
+              ></textarea>
+            </div>
+
+            <div class="booking-actions">
+              <button type="button" class="btn btn-primary">
+                Submit Request (demo)
+              </button>
+              <span class="booking-demo-tag">Demo only – does not send.</span>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <h2>Visit Pawfect Grooming</h2>
+        <p class="lead">
+          123 Paw Lane • Orlando, FL • Open Mon–Sat, 9 AM – 6 PM.
+        </p>
+        <p>Bookings handled through your favorite online scheduling tool.</p>
+      </section>
+
+      <!-- Back to main portfolio -->
+      <section class="section" id="back">
+        <div style="text-align: center; margin-top: 2rem">
+          <a href="http://localhost:5173/" class="btn btn-primary">
+            ← Back to Main Website
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      Demo website layout created for portfolio purposes.
+    </footer>
+  </body>
+</html>
