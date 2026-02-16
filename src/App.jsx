@@ -34,6 +34,7 @@ function App() {
             >
               ☰
             </button>
+
             <ul
               className={`nav-links ${navOpen ? "show" : ""}`}
               id="navLinks"
@@ -42,15 +43,23 @@ function App() {
               <li>
                 <a href="#services">Services</a>
               </li>
+
+              <li>
+                <a href="#stack">Stack</a>
+              </li>
+
               <li>
                 <a href="#work">Work</a>
               </li>
+
               <li>
                 <a href="#process">Process</a>
               </li>
+
               <li>
                 <a href="#about">About</a>
               </li>
+
               <li>
                 <a href="#contact" className="btn-primary nav-cta">
                   Work With Me
@@ -66,12 +75,14 @@ function App() {
         <section className="hero">
           <div className="container hero-inner">
             <div className="hero-text">
-              <p className="eyebrow">Web Developer • Orlando, FL</p>
-              <h1>I build simple, modern websites for small businesses.</h1>
+              <p className="eyebrow">Full-Stack Web Developer • Orlando, FL</p>
+
+              <h1>I build modern, fast websites and web apps.</h1>
+
               <p className="hero-subtitle">
-                I help local business owners get online, look professional, and
-                make it easy for customers to find and contact them – without
-                overcomplicated tech.
+                Clean UI, responsive layouts, and real-world features — built
+                with React, JavaScript, and production-friendly tools like
+                Netlify.
               </p>
 
               <div className="hero-actions">
@@ -84,8 +95,8 @@ function App() {
               </div>
 
               <div className="hero-tags">
-                <span>Small business websites</span>
-                <span>Landing pages</span>
+                <span>Responsive design</span>
+                <span>Performance focused</span>
                 <span>Netlify &amp; SEO friendly</span>
               </div>
             </div>
@@ -98,6 +109,56 @@ function App() {
                   className="hero-photo"
                 />
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* TECH STACK */}
+        <section className="section" id="stack">
+          <div className="container">
+            <h2 className="section-title">Tech Stack</h2>
+            <p className="section-subtitle">
+              Tools I use to build modern, responsive, production-ready
+              projects.
+            </p>
+
+            <div className="stack-grid">
+              <article className="stack-card">
+                <h3>Frontend</h3>
+                <p className="stack-note">
+                  UI, components, layout, interactivity
+                </p>
+                <div className="chips">
+                  <span className="chip">React</span>
+                  <span className="chip">JavaScript</span>
+                  <span className="chip">HTML</span>
+                  <span className="chip">CSS</span>
+                </div>
+              </article>
+
+              <article className="stack-card">
+                <h3>Backend</h3>
+                <p className="stack-note">
+                  APIs, data, authentication patterns
+                </p>
+                <div className="chips">
+                  <span className="chip">Node.js</span>
+                  <span className="chip">Express</span>
+                  <span className="chip">MongoDB</span>
+                  <span className="chip">REST APIs</span>
+                </div>
+              </article>
+
+              <article className="stack-card">
+                <h3>Tools</h3>
+                <p className="stack-note">Build, deploy, and ship reliably</p>
+                <div className="chips">
+                  <span className="chip">Vite</span>
+                  <span className="chip">Netlify</span>
+                  <span className="chip">GitHub</span>
+                  <span className="chip">VS Code</span>
+                </div>
+              </article>
             </div>
           </div>
         </section>
@@ -174,20 +235,37 @@ function App() {
                   />
                 </div>
                 <div className="work-body">
-                  <h3>Pet Grooming Studio</h3>
+                  <div className="work-top">
+                    <h3>Pet Grooming Studio</h3>
+                    <span className="work-pill">Web</span>
+                  </div>
+
                   <p>
                     One-page website for a local pet groomer with services,
                     pricing, and a simple booking form.
                   </p>
+
+                  <div className="work-tags">
+                    <span className="tag">Responsive UI</span>
+                    <span className="tag">Netlify</span>
+                    <span className="tag">Forms</span>
+                  </div>
+
                   <p className="work-meta">Tech: HTML, CSS, JS, Netlify</p>
-                  <a
-                    href="/demos/pet/index.html"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="work-link"
-                  >
-                    View live demo →
-                  </a>
+
+                  <div className="work-actions">
+                    <a
+                      href="/demos/pet/index.html"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-secondary btn-sm"
+                    >
+                      Live Demo
+                    </a>
+                    <a href="#contact" className="btn-primary btn-sm">
+                      Request Similar
+                    </a>
+                  </div>
                 </div>
               </article>
 
@@ -199,20 +277,37 @@ function App() {
                   />
                 </div>
                 <div className="work-body">
-                  <h3>Local Café Landing Page</h3>
+                  <div className="work-top">
+                    <h3>Local Café Landing Page</h3>
+                    <span className="work-pill">Landing</span>
+                  </div>
+
                   <p>
                     Landing page featuring menu highlights, hours, location, and
                     a simple contact section for catering inquiries.
                   </p>
+
+                  <div className="work-tags">
+                    <span className="tag">CTA Focused</span>
+                    <span className="tag">Clean Layout</span>
+                    <span className="tag">Fast Load</span>
+                  </div>
+
                   <p className="work-meta">Tech: HTML, CSS, JS</p>
-                  <a
-                    href="/demos/cafe/index.html"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="work-link"
-                  >
-                    View live demo →
-                  </a>
+
+                  <div className="work-actions">
+                    <a
+                      href="/demos/cafe/index.html"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-secondary btn-sm"
+                    >
+                      Live Demo
+                    </a>
+                    <a href="#contact" className="btn-primary btn-sm">
+                      Request Similar
+                    </a>
+                  </div>
                 </div>
               </article>
 
@@ -224,20 +319,37 @@ function App() {
                   />
                 </div>
                 <div className="work-body">
-                  <h3>Service Business Portfolio</h3>
+                  <div className="work-top">
+                    <h3>Service Business Portfolio</h3>
+                    <span className="work-pill">Business</span>
+                  </div>
+
                   <p>
                     A simple site for a home-service business to showcase
                     services, recent repairs, and an example quote form.
                   </p>
+
+                  <div className="work-tags">
+                    <span className="tag">Netlify Forms</span>
+                    <span className="tag">Portfolio</span>
+                    <span className="tag">SEO Ready</span>
+                  </div>
+
                   <p className="work-meta">Tech: HTML, CSS, Netlify Forms</p>
-                  <a
-                    href="/demos/service/index.html"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="work-link"
-                  >
-                    View live demo →
-                  </a>
+
+                  <div className="work-actions">
+                    <a
+                      href="/demos/service/index.html"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-secondary btn-sm"
+                    >
+                      Live Demo
+                    </a>
+                    <a href="#contact" className="btn-primary btn-sm">
+                      Request Similar
+                    </a>
+                  </div>
                 </div>
               </article>
             </div>
@@ -300,14 +412,12 @@ function App() {
                 Development.
               </p>
               <p>
-                I specialize in creating simple, modern websites for small
-                businesses that don’t need anything overly complicated – just
-                something clean, fast, and easy for customers to use.
+                I build clean, modern websites and web apps that feel simple to
+                use — with performance, responsiveness, and clarity in mind.
               </p>
               <p>
                 I enjoy working directly with business owners, explaining things
-                in plain language and keeping the process as stress-free as
-                possible.
+                in plain language and keeping the process stress-free.
               </p>
             </div>
 
@@ -316,7 +426,8 @@ function App() {
               <ul className="checklist">
                 <li>Based in Orlando, FL</li>
                 <li>Focused on small business &amp; local brands</li>
-                <li>Comfortable with HTML, CSS, JS, Netlify</li>
+                <li>React + modern JavaScript</li>
+                <li>Deployment with Netlify</li>
                 <li>Available for freelance &amp; ongoing work</li>
               </ul>
             </div>
@@ -333,17 +444,17 @@ function App() {
                 I’ll get back to you with ideas and next steps.
               </p>
 
+              {/* ✅ Netlify form (redirects to /thanks/) */}
               <form
                 className="contact-form"
                 name="contact"
                 method="POST"
+                action="/thanks/"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
               >
-                {/* Netlify form name */}
                 <input type="hidden" name="form-name" value="contact" />
 
-                {/* Honeypot field for spam bots */}
                 <p className="hidden-field">
                   <label>
                     Don’t fill this out if you’re human:{" "}
@@ -417,7 +528,7 @@ function App() {
               <p>
                 <strong>Based in:</strong>
                 <br />
-                Orlando,FL
+                Orlando, FL
               </p>
 
               <p>
