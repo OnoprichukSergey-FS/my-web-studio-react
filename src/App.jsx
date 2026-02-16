@@ -5,7 +5,9 @@ function App() {
   const year = new Date().getFullYear();
 
   const handleNavClick = (e) => {
-    if (e.target.tagName === "A") setNavOpen(false);
+    if (e.target.tagName === "A") {
+      setNavOpen(false);
+    }
   };
 
   return (
@@ -442,63 +444,50 @@ function App() {
                 I’ll get back to you with ideas and next steps.
               </p>
 
-              {/* ✅ Netlify Form */}
+              {/* ✅ Netlify form (redirects to /thanks) */}
               <form
-                className="contact-form"
                 name="contact"
                 method="POST"
-                action="/thanks/"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
+                action="/thanks"
+                className="contact-form"
               >
                 <input type="hidden" name="form-name" value="contact" />
 
-                <p className="hidden-field">
+                <p hidden>
                   <label>
-                    Don’t fill this out if you’re human:{" "}
+                    Don’t fill this out:
                     <input name="bot-field" />
                   </label>
                 </p>
 
                 <div className="form-group">
-                  <label htmlFor="name">Your Name *</label>
-                  <input type="text" id="name" name="name" required />
+                  <label>Your Name *</label>
+                  <input type="text" name="name" required />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email *</label>
-                  <input type="email" id="email" name="email" required />
+                  <label>Email *</label>
+                  <input type="email" name="email" required />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="business">Business Name</label>
-                  <input type="text" id="business" name="business" />
+                  <label>Business Name</label>
+                  <input type="text" name="business" />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="website">Current Website (if any)</label>
-                  <input
-                    type="url"
-                    id="website"
-                    name="website"
-                    placeholder="https://example.com"
-                  />
+                  <label>Website</label>
+                  <input type="url" name="website" />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">Project details *</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="4"
-                    required
-                    placeholder="Tell me about your business, goals, and timeline."
-                  ></textarea>
+                  <label>Message *</label>
+                  <textarea name="message" required></textarea>
                 </div>
 
-                <button type="submit" className="btn-primary form-submit">
-                  Send Message
-                </button>
+                <button type="submit">Send Message</button>
               </form>
             </div>
 
