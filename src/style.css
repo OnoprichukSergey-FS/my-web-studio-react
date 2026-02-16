@@ -602,89 +602,77 @@ body {
   color: var(--primary);
 }
 
-/* CONTACT */
-.contact-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
-  gap: 2rem;
-  align-items: flex-start;
-}
-
+/* CONTACT FORM */
 .contact-form {
   background: #ffffff;
-  border-radius: var(--radius-lg);
-  padding: 1.5rem 1.4rem;
-  box-shadow: var(--shadow-soft);
-  border: 1px solid rgba(0, 0, 0, 0.02);
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  max-width: 500px;
 }
 
-.contact-form:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.06);
-}
-
+/* FORM GROUP */
 .form-group {
-  margin-bottom: 0.9rem;
+  margin-bottom: 18px;
 }
 
-label {
+/* LABEL */
+.form-group label {
   display: block;
-  font-size: 0.85rem;
-  margin-bottom: 0.2rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
 }
 
-input,
-select,
-textarea {
+/* INPUTS + TEXTAREA + SELECT */
+.form-group input,
+.form-group textarea,
+.form-group select {
   width: 100%;
-  padding: 0.55rem 0.7rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
   font-family: inherit;
-  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+/* TEXTAREA HEIGHT */
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* FOCUS EFFECT */
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #4f7cff;
   outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease,
-    background 0.15s ease;
+  box-shadow: 0 0 0 2px rgba(79, 124, 255, 0.15);
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 1px rgba(91, 141, 239, 0.3);
-  background: #ffffff;
+/* BUTTON */
+.contact-form button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #4f7cff, #ff9f43);
+  color: white;
+
+  transition: all 0.2s ease;
 }
 
-.form-submit {
-  margin-top: 0.5rem;
-}
-
-.hidden-field {
-  display: none;
-}
-
-.contact-info h3 {
-  margin-top: 0;
-}
-
-.contact-info p {
-  margin-bottom: 0.9rem;
-  color: var(--muted);
-}
-
-.contact-info a {
-  color: var(--primary-dark);
-  text-decoration: none;
-}
-
-.contact-info a:hover {
-  text-decoration: underline;
-}
-
-.small {
-  font-size: 0.85rem;
-  color: var(--muted);
+/* BUTTON HOVER */
+.contact-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(79, 124, 255, 0.3);
 }
 
 /* FOOTER */
