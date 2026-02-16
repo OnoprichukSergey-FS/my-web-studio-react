@@ -1,14 +1,75 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [modal, setModal] = useState({ open: false, type: "success" }); // type: "success" | "error"
   const year = new Date().getFullYear();
 
   const handleNavClick = (e) => {
-    if (e.target.tagName === "A") {
-      setNavOpen(false);
+    if (e.target.tagName === "A") setNavOpen(false);
+  };
+
+  // Netlify expects URL-encoded body for SPA fetch submits
+  const encode = (data) =>
+    new URLSearchParams(
+      Object.entries(data).reduce((acc, [k, v]) => {
+        acc[k] = typeof v === "string" ? v : String(v ?? "");
+        return acc;
+      }, {})
+    ).toString();
+
+  const closeModal = () => setModal((m) => ({ ...m, open: false }));
+
+  const onContactSubmit = async (e) => {
+    e.preventDefault();
+
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // IMPORTANT: must match your form name
+    const payload = {
+      "form-name": "contact",
+    };
+
+    // Copy form fields into payload
+    for (const [key, value] of formData.entries()) {
+      payload[key] = value;
+    }
+
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode(payload),
+      });
+
+      if (!res.ok) throw new Error(`Submit failed: ${res.status}`);
+
+      form.reset();
+      setModal({ open: true, type: "success" });
+    } catch (err) {
+      console.error(err);
+      setModal({ open: true, type: "error" });
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
+  const modalTitle = useMemo(() => {
+    return modal.type === "success"
+      ? "Message sent ✅"
+      : "Something went wrong ⚠️";
+  }, [modal.type]);
+
+  const modalText = useMemo(() => {
+    return modal.type === "success"
+      ? "Thanks for reaching out — I’ll reply within 1–2 business days."
+      : "Please try again in a minute. If it keeps failing, email me directly at anytimegiftllc@gmail.com.";
+  }, [modal.type]);
 
   return (
     <>
@@ -30,6 +91,7 @@ function App() {
               className="nav-toggle"
               id="navToggle"
               aria-label="Toggle navigation"
+              aria-expanded={navOpen}
               onClick={() => setNavOpen((prev) => !prev)}
             >
               ☰
@@ -413,7 +475,7 @@ function App() {
               </p>
               <p>
                 I build clean, modern websites and web apps that feel simple to
-                use — with performance, responsiveness, and clarity in mind.
+                use — with performance and clarity in mind.
               </p>
               <p>
                 I enjoy working directly with business owners, explaining things
@@ -444,47 +506,55 @@ function App() {
                 I’ll get back to you with ideas and next steps.
               </p>
 
-              {/* ✅ Netlify form (redirects to /thanks) */}
+              {/* Netlify form + SPA fetch submit (popup instead of redirect) */}
               <form
+                className="contact-form"
                 name="contact"
                 method="POST"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
-                action="/thanks/"
-                className="contact-form"
+                onSubmit={onContactSubmit}
               >
+                {/* Netlify required hidden input */}
                 <input type="hidden" name="form-name" value="contact" />
 
-                <p hidden>
+                {/* Honeypot field */}
+                <p className="hidden-field">
                   <label>
-                    Don’t fill this out:
+                    Don’t fill this out if you’re human:{" "}
                     <input name="bot-field" />
                   </label>
                 </p>
 
                 <div className="form-group">
-                  <label>Your Name *</label>
-                  <input type="text" name="name" required />
+                  <label htmlFor="name">Your Name *</label>
+                  <input type="text" id="name" name="name" required />
                 </div>
 
                 <div className="form-group">
-                  <label>Email *</label>
-                  <input type="email" name="email" required />
+                  <label htmlFor="email">Email *</label>
+                  <input type="email" id="email" name="email" required />
                 </div>
 
                 <div className="form-group">
-                  <label>Business Name</label>
-                  <input type="text" name="business" />
+                  <label htmlFor="business">Business Name</label>
+                  <input type="text" id="business" name="business" />
                 </div>
 
                 <div className="form-group">
-                  <label>Website</label>
-                  <input type="url" name="website" />
+                  <label htmlFor="website">Current Website (if any)</label>
+                  <input
+                    type="url"
+                    id="website"
+                    name="website"
+                    placeholder="https://example.com"
+                  />
                 </div>
 
                 <div className="form-group">
-                  <label>What do you need help with?</label>
-                  <select name="help" defaultValue="new-site">
+                  <label htmlFor="help">What do you need help with?</label>
+                  <select id="help" name="help">
+                    <option value="">Select an option</option>
                     <option value="new-site">New website</option>
                     <option value="redesign">Redesign or refresh</option>
                     <option value="landing-page">Landing page</option>
@@ -493,11 +563,23 @@ function App() {
                 </div>
 
                 <div className="form-group">
-                  <label>Message *</label>
-                  <textarea name="message" required></textarea>
+                  <label htmlFor="message">Project details</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    placeholder="Tell me about your business, goals, and timeline."
+                  ></textarea>
                 </div>
 
-                <button type="submit">Send Message</button>
+                <button
+                  type="submit"
+                  className="btn-primary form-submit"
+                  disabled={isSubmitting}
+                  aria-busy={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </button>
               </form>
             </div>
 
@@ -563,6 +645,34 @@ function App() {
           </p>
         </div>
       </footer>
+
+      {/* POPUP MODAL */}
+      {modal.open && (
+        <div
+          className="modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="modalTitle"
+          onMouseDown={(e) => {
+            // click outside closes
+            if (e.target.classList.contains("modal-overlay")) closeModal();
+          }}
+        >
+          <div className="modal-card">
+            <h3 id="modalTitle">{modalTitle}</h3>
+            <p>{modalText}</p>
+            <div className="modal-actions">
+              <button
+                className="btn-primary"
+                type="button"
+                onClick={closeModal}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
