@@ -34,6 +34,69 @@ body {
   line-height: 1.6;
 }
 
+/* ✅ TOAST POPUP (TOP CENTER) */
+.toast {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translate(-50%, -10px);
+  z-index: 9999;
+
+  width: min(520px, calc(100% - 32px));
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+  pointer-events: auto;
+}
+
+.toast-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 12px 14px;
+  border-radius: 14px;
+
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+.toast.success .toast-inner {
+  border-left: 6px solid rgba(91, 141, 239, 0.9);
+}
+
+.toast.error .toast-inner {
+  border-left: 6px solid rgba(220, 38, 38, 0.85);
+}
+
+.toast-title {
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.toast-close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+  padding: 6px 8px;
+  border-radius: 10px;
+  color: #444;
+}
+
+.toast-close:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
 /* UTILITIES */
 .container {
   width: min(1100px, 100% - 2.5rem);
@@ -335,7 +398,8 @@ body {
 /* a11y focus */
 .btn-primary:focus-visible,
 .btn-secondary:focus-visible,
-.nav-links a:focus-visible {
+.nav-links a:focus-visible,
+.contact-form button[type="submit"]:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
@@ -656,19 +720,27 @@ textarea:focus {
   background: #ffffff;
 }
 
-/* clean submit spacing — styling comes from .btn-primary */
-.form-submit {
+/* ✅ Submit button style (kept CLEAN in CSS only) */
+.contact-form button[type="submit"] {
+  width: 100%;
   margin-top: 0.5rem;
-  width: 100%;
+  padding: 0.85rem 1.2rem;
+  border-radius: 999px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  box-shadow: 0 10px 20px rgba(91, 141, 239, 0.35);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
-/* ensure full-width when the button has btn-primary */
-.contact-form .btn-primary {
-  width: 100%;
-}
-
-.hidden-field {
-  display: none;
+.contact-form button[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 24px rgba(91, 141, 239, 0.4);
 }
 
 textarea {
@@ -788,31 +860,4 @@ textarea {
     width: 190px;
     height: 190px;
   }
-}
-
-/* -------------------------------------------------------
-   OPTIONAL: Popup / Toast (if you switch to “no redirect”)
-   ------------------------------------------------------- */
-.toast {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  width: min(360px, calc(100% - 36px));
-  background: #ffffff;
-  border: 1px solid var(--border);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
-  border-radius: 16px;
-  padding: 14px 14px;
-  z-index: 9999;
-}
-
-.toast-title {
-  margin: 0 0 4px;
-  font-weight: 700;
-}
-
-.toast-text {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.95rem;
 }

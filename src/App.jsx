@@ -1,78 +1,111 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
+
+function encode(data) {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [modal, setModal] = useState({ open: false, type: "success" }); // type: "success" | "error"
-  const year = new Date().getFullYear();
+
+  // ✅ Toast (top popup)
+  const [toastOpen, setToastOpen] = useState(false);
+  const [toastText, setToastText] = useState("");
+  const [toastType, setToastType] = useState("success"); // success | error
+  const toastTimerRef = useRef(null);
+
+  // ✅ Controlled form
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    business: "",
+    website: "",
+    help: "new-site",
+    message: "",
+    "bot-field": "",
+  });
+
+  const year = useMemo(() => new Date().getFullYear(), []);
 
   const handleNavClick = (e) => {
     if (e.target.tagName === "A") setNavOpen(false);
   };
 
-  // Netlify expects URL-encoded body for SPA fetch submits
-  const encode = (data) =>
-    new URLSearchParams(
-      Object.entries(data).reduce((acc, [k, v]) => {
-        acc[k] = typeof v === "string" ? v : String(v ?? "");
-        return acc;
-      }, {})
-    ).toString();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-  const closeModal = () => setModal((m) => ({ ...m, open: false }));
+  const showToast = (text, type = "success") => {
+    setToastText(text);
+    setToastType(type);
+    setToastOpen(true);
 
-  const onContactSubmit = async (e) => {
+    if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = window.setTimeout(() => {
+      setToastOpen(false);
+    }, 3500);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (isSubmitting) return;
-    setIsSubmitting(true);
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    // IMPORTANT: must match your form name
-    const payload = {
-      "form-name": "contact",
-    };
-
-    // Copy form fields into payload
-    for (const [key, value] of formData.entries()) {
-      payload[key] = value;
-    }
+    // honeypot: if filled, silently stop
+    if (formData["bot-field"]) return;
 
     try {
       const res = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode(payload),
+        body: encode({
+          "form-name": "contact",
+          ...formData,
+        }),
       });
 
-      if (!res.ok) throw new Error(`Submit failed: ${res.status}`);
+      if (!res.ok) throw new Error("Network response was not ok");
 
-      form.reset();
-      setModal({ open: true, type: "success" });
+      showToast("✅ Message sent! I’ll reply in 1–2 business days.", "success");
+
+      // reset
+      setFormData({
+        name: "",
+        email: "",
+        business: "",
+        website: "",
+        help: "new-site",
+        message: "",
+        "bot-field": "",
+      });
     } catch (err) {
       console.error(err);
-      setModal({ open: true, type: "error" });
-    } finally {
-      setIsSubmitting(false);
+      showToast("❌ Something went wrong. Please try again.", "error");
     }
   };
 
-  const modalTitle = useMemo(() => {
-    return modal.type === "success"
-      ? "Message sent ✅"
-      : "Something went wrong ⚠️";
-  }, [modal.type]);
-
-  const modalText = useMemo(() => {
-    return modal.type === "success"
-      ? "Thanks for reaching out — I’ll reply within 1–2 business days."
-      : "Please try again in a minute. If it keeps failing, email me directly at anytimegiftllc@gmail.com.";
-  }, [modal.type]);
-
   return (
     <>
+      {/* ✅ TOP TOAST POPUP (TOP CENTER) */}
+      <div
+        className={`toast ${toastOpen ? "show" : ""} ${toastType}`}
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <div className="toast-inner">
+          <span className="toast-title">{toastText}</span>
+          <button
+            type="button"
+            className="toast-close"
+            onClick={() => setToastOpen(false)}
+            aria-label="Close notification"
+          >
+            ✕
+          </button>
+        </div>
+      </div>
+
       {/* HEADER */}
       <header className="site-header">
         <div className="container header-inner">
@@ -91,7 +124,6 @@ function App() {
               className="nav-toggle"
               id="navToggle"
               aria-label="Toggle navigation"
-              aria-expanded={navOpen}
               onClick={() => setNavOpen((prev) => !prev)}
             >
               ☰
@@ -105,23 +137,18 @@ function App() {
               <li>
                 <a href="#services">Services</a>
               </li>
-
               <li>
                 <a href="#stack">Stack</a>
               </li>
-
               <li>
                 <a href="#work">Work</a>
               </li>
-
               <li>
                 <a href="#process">Process</a>
               </li>
-
               <li>
                 <a href="#about">About</a>
               </li>
-
               <li>
                 <a href="#contact" className="btn-primary nav-cta">
                   Work With Me
@@ -138,9 +165,7 @@ function App() {
           <div className="container hero-inner">
             <div className="hero-text">
               <p className="eyebrow">Full-Stack Web Developer • Orlando, FL</p>
-
               <h1>I build modern, fast websites and web apps.</h1>
-
               <p className="hero-subtitle">
                 Clean UI, responsive layouts, and real-world features — built
                 with React, JavaScript, and production-friendly tools like
@@ -475,7 +500,7 @@ function App() {
               </p>
               <p>
                 I build clean, modern websites and web apps that feel simple to
-                use — with performance and clarity in mind.
+                use — with performance, responsiveness, and clarity in mind.
               </p>
               <p>
                 I enjoy working directly with business owners, explaining things
@@ -506,55 +531,77 @@ function App() {
                 I’ll get back to you with ideas and next steps.
               </p>
 
-              {/* Netlify form + SPA fetch submit (popup instead of redirect) */}
+              {/* ✅ Netlify form (AJAX submit + toast) */}
               <form
-                className="contact-form"
                 name="contact"
                 method="POST"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
-                onSubmit={onContactSubmit}
+                className="contact-form"
+                onSubmit={handleSubmit}
               >
-                {/* Netlify required hidden input */}
                 <input type="hidden" name="form-name" value="contact" />
 
-                {/* Honeypot field */}
-                <p className="hidden-field">
+                <p hidden>
                   <label>
-                    Don’t fill this out if you’re human:{" "}
-                    <input name="bot-field" />
+                    Don’t fill this out:
+                    <input
+                      name="bot-field"
+                      value={formData["bot-field"]}
+                      onChange={handleChange}
+                    />
                   </label>
                 </p>
 
                 <div className="form-group">
-                  <label htmlFor="name">Your Name *</label>
-                  <input type="text" id="name" name="name" required />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="email">Email *</label>
-                  <input type="email" id="email" name="email" required />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="business">Business Name</label>
-                  <input type="text" id="business" name="business" />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="website">Current Website (if any)</label>
+                  <label>Your Name *</label>
                   <input
-                    type="url"
-                    id="website"
-                    name="website"
-                    placeholder="https://example.com"
+                    type="text"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="help">What do you need help with?</label>
-                  <select id="help" name="help">
-                    <option value="">Select an option</option>
+                  <label>Email *</label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Business Name</label>
+                  <input
+                    type="text"
+                    name="business"
+                    value={formData.business}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>Current Website (if any)</label>
+                  <input
+                    type="url"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label>What do you need help with?</label>
+                  <select
+                    name="help"
+                    value={formData.help}
+                    onChange={handleChange}
+                  >
                     <option value="new-site">New website</option>
                     <option value="redesign">Redesign or refresh</option>
                     <option value="landing-page">Landing page</option>
@@ -563,23 +610,17 @@ function App() {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="message">Project details</label>
+                  <label>Project details *</label>
                   <textarea
-                    id="message"
                     name="message"
-                    rows="4"
+                    required
                     placeholder="Tell me about your business, goals, and timeline."
-                  ></textarea>
+                    value={formData.message}
+                    onChange={handleChange}
+                  />
                 </div>
 
-                <button
-                  type="submit"
-                  className="btn-primary form-submit"
-                  disabled={isSubmitting}
-                  aria-busy={isSubmitting}
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </button>
+                <button type="submit">Send Message</button>
               </form>
             </div>
 
@@ -645,34 +686,6 @@ function App() {
           </p>
         </div>
       </footer>
-
-      {/* POPUP MODAL */}
-      {modal.open && (
-        <div
-          className="modal-overlay"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modalTitle"
-          onMouseDown={(e) => {
-            // click outside closes
-            if (e.target.classList.contains("modal-overlay")) closeModal();
-          }}
-        >
-          <div className="modal-card">
-            <h3 id="modalTitle">{modalTitle}</h3>
-            <p>{modalText}</p>
-            <div className="modal-actions">
-              <button
-                className="btn-primary"
-                type="button"
-                onClick={closeModal}
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 }
