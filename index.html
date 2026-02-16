@@ -12,8 +12,7 @@
   </head>
 
   <body>
-    <!-- IMPORTANT: Hidden form for Netlify detection (React SPAs need this) -->
-    <!-- Netlify needs a static form in the built HTML to detect it -->
+    <!-- Hidden form for Netlify detection (React SPAs need this) -->
     <form
       name="contact"
       method="POST"
@@ -30,6 +29,12 @@
       <input type="email" name="email" />
       <input type="text" name="business" />
       <input type="url" name="website" />
+      <select name="help">
+        <option value="new-site">New website</option>
+        <option value="redesign">Redesign or refresh</option>
+        <option value="landing-page">Landing page</option>
+        <option value="other">Something else</option>
+      </select>
       <textarea name="message"></textarea>
     </form>
 

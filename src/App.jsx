@@ -450,7 +450,7 @@ function App() {
                 method="POST"
                 data-netlify="true"
                 data-netlify-honeypot="bot-field"
-                action="/thanks"
+                action="/thanks/"
                 className="contact-form"
               >
                 <input type="hidden" name="form-name" value="contact" />
@@ -480,6 +480,16 @@ function App() {
                 <div className="form-group">
                   <label>Website</label>
                   <input type="url" name="website" />
+                </div>
+
+                <div className="form-group">
+                  <label>What do you need help with?</label>
+                  <select name="help" defaultValue="new-site">
+                    <option value="new-site">New website</option>
+                    <option value="redesign">Redesign or refresh</option>
+                    <option value="landing-page">Landing page</option>
+                    <option value="other">Something else</option>
+                  </select>
                 </div>
 
                 <div className="form-group">
