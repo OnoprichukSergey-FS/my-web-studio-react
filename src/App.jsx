@@ -115,12 +115,16 @@ function App() {
 
       <header className="site-header">
         <div className="container header-inner">
-          <a href="#top" className="logo">
-            <div className="logo-mark">S</div>
-            <div className="logo-text">
-              <span>Sergey Onoprichuk</span>
-              <small>Onoprichuk Web Studio</small>
-            </div>
+          <a
+            href="#top"
+            className="logo"
+            aria-label="Onoprichuk Web Studio home"
+          >
+            <img
+              src="/logo_dark.png"
+              alt="Onoprichuk Web Studio"
+              className="site-logo"
+            />
           </a>
 
           <nav className="nav">
