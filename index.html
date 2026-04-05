@@ -2,21 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <img
-      src="/logo_dark.png"
-      alt="Onoprichuk Web Studio"
-      className="site-logo"
-    />
+
+    <!-- Favicon (small logo in browser tab) -->
+    <link rel="icon" type="image/png" href="/logo_icon.png" />
+
+    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@600;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Responsive -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title -->
     <title>Sergey Onoprichuk | Web Studio</title>
   </head>
 
   <body>
-    <!-- Hidden form for Netlify detection (React SPAs need this) -->
+    <!-- Netlify form (hidden, REQUIRED for forms to work) -->
     <form
       name="contact"
       method="POST"
@@ -25,6 +29,7 @@
       hidden
     >
       <input type="hidden" name="form-name" value="contact" />
+
       <p hidden>
         <label>Don’t fill this out: <input name="bot-field" /></label>
       </p>
@@ -33,16 +38,21 @@
       <input type="email" name="email" />
       <input type="text" name="business" />
       <input type="url" name="website" />
+
       <select name="help">
         <option value="new-site">New website</option>
         <option value="redesign">Redesign or refresh</option>
         <option value="landing-page">Landing page</option>
         <option value="other">Something else</option>
       </select>
+
       <textarea name="message"></textarea>
     </form>
 
+    <!-- React App Mount -->
     <div id="root"></div>
+
+    <!-- Main React Entry -->
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
