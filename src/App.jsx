@@ -2,20 +2,17 @@ import React, { useMemo, useRef, useState } from "react";
 
 function encode(data) {
   return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
     .join("&");
 }
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
-
-  // ✅ Toast (top popup)
   const [toastOpen, setToastOpen] = useState(false);
   const [toastText, setToastText] = useState("");
-  const [toastType, setToastType] = useState("success"); // success | error
+  const [toastType, setToastType] = useState("success");
   const toastTimerRef = useRef(null);
 
-  // ✅ Controlled form
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,12 +26,17 @@ function App() {
   const year = useMemo(() => new Date().getFullYear(), []);
 
   const handleNavClick = (e) => {
-    if (e.target.tagName === "A") setNavOpen(false);
+    if (e.target.tagName === "A") {
+      setNavOpen(false);
+    }
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const showToast = (text, type = "success") => {
@@ -42,7 +44,10 @@ function App() {
     setToastType(type);
     setToastOpen(true);
 
-    if (toastTimerRef.current) window.clearTimeout(toastTimerRef.current);
+    if (toastTimerRef.current) {
+      window.clearTimeout(toastTimerRef.current);
+    }
+
     toastTimerRef.current = window.setTimeout(() => {
       setToastOpen(false);
     }, 3500);
@@ -51,7 +56,6 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // honeypot: if filled, silently stop
     if (formData["bot-field"]) return;
 
     try {
@@ -64,11 +68,15 @@ function App() {
         }),
       });
 
-      if (!res.ok) throw new Error("Network response was not ok");
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
 
-      showToast("✅ Message sent! I’ll reply in 1–2 business days.", "success");
+      showToast(
+        "Message sent. I’ll get back to you in 1–2 business days.",
+        "success"
+      );
 
-      // reset
       setFormData({
         name: "",
         email: "",
@@ -78,15 +86,14 @@ function App() {
         message: "",
         "bot-field": "",
       });
-    } catch (err) {
-      console.error(err);
-      showToast("❌ Something went wrong. Please try again.", "error");
+    } catch (error) {
+      console.error(error);
+      showToast("Something went wrong. Please try again.", "error");
     }
   };
 
   return (
     <>
-      {/* ✅ TOP TOAST POPUP (TOP CENTER) */}
       <div
         className={`toast ${toastOpen ? "show" : ""} ${toastType}`}
         role="status"
@@ -106,23 +113,19 @@ function App() {
         </div>
       </div>
 
-      {/* HEADER */}
       <header className="site-header">
         <div className="container header-inner">
           <a href="#top" className="logo">
-            <div className="logo-wrap">
-              <img src="/mylogo.png" alt="AnyTimeGift LLC logo" />
-              <span className="logo-text">
-                Sergey Onoprichuk <br />
-                <small>AnyTimeGift LLC</small>
-              </span>
+            <div className="logo-mark">S</div>
+            <div className="logo-text">
+              <span>Sergey Onoprichuk</span>
+              <small>Onoprichuk Web Studio</small>
             </div>
           </a>
 
           <nav className="nav">
             <button
               className="nav-toggle"
-              id="navToggle"
               aria-label="Toggle navigation"
               onClick={() => setNavOpen((prev) => !prev)}
             >
@@ -131,17 +134,13 @@ function App() {
 
             <ul
               className={`nav-links ${navOpen ? "show" : ""}`}
-              id="navLinks"
               onClick={handleNavClick}
             >
               <li>
-                <a href="#services">Services</a>
-              </li>
-              <li>
-                <a href="#stack">Stack</a>
-              </li>
-              <li>
                 <a href="#work">Work</a>
+              </li>
+              <li>
+                <a href="#services">Services</a>
               </li>
               <li>
                 <a href="#process">Process</a>
@@ -150,8 +149,8 @@ function App() {
                 <a href="#about">About</a>
               </li>
               <li>
-                <a href="#contact" className="btn-primary nav-cta">
-                  Work With Me
+                <a href="#contact" className="nav-cta">
+                  Start a Project
                 </a>
               </li>
             </ul>
@@ -160,280 +159,176 @@ function App() {
       </header>
 
       <main id="top">
-        {/* HERO */}
         <section className="hero">
-          <div className="container hero-inner">
-            <div className="hero-text">
-              <p className="eyebrow">Full-Stack Web Developer • Orlando, FL</p>
-              <h1>I build modern, fast websites and web apps.</h1>
-              <p className="hero-subtitle">
-                Clean UI, responsive layouts, and real-world features — built
-                with React, JavaScript, and production-friendly tools like
-                Netlify.
+          <div className="container hero-layout">
+            <div className="hero-left">
+              <p className="eyebrow">Freelance Web Developer · Orlando, FL</p>
+              <h1>
+                I design and build clean, modern websites for small businesses.
+              </h1>
+              <p className="hero-copy">
+                Professional websites that look polished, work on every screen,
+                and help your business make a stronger first impression online.
               </p>
 
               <div className="hero-actions">
-                <a href="#contact" className="btn-primary">
+                <a href="#contact" className="btn btn-primary">
                   Start a Project
                 </a>
-                <a href="#work" className="btn-secondary">
-                  View My Work
+                <a href="#work" className="btn btn-secondary">
+                  View Work
                 </a>
               </div>
 
-              <div className="hero-tags">
+              <div className="hero-points">
+                <span>Custom small business websites</span>
                 <span>Responsive design</span>
-                <span>Performance focused</span>
-                <span>Netlify &amp; SEO friendly</span>
+                <span>Fast and modern builds</span>
               </div>
             </div>
 
-            <div className="hero-image">
-              <div className="hero-photo-wrapper">
-                <img
-                  src="/portrait.png"
-                  alt="Sergey Onoprichuk – Web Developer"
-                  className="hero-photo"
-                />
+            <div className="hero-right">
+              <div className="hero-panel">
+                <p className="panel-label">Currently available for</p>
+                <ul className="panel-list">
+                  <li>Business websites</li>
+                  <li>Landing pages</li>
+                  <li>Website redesigns</li>
+                  <li>Portfolio sites</li>
+                </ul>
+
+                <div className="panel-divider" />
+
+                <p className="panel-contact">Best contact</p>
+                <a
+                  href="mailto:hello@onoprichukwebstudio.com"
+                  className="panel-email"
+                >
+                  hello@onoprichukwebstudio.com
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* TECH STACK */}
-        <section className="section" id="stack">
+        <section className="section" id="work">
           <div className="container">
-            <h2 className="section-title">Tech Stack</h2>
+            <p className="section-kicker">Selected Work</p>
+            <h2 className="section-title">Portfolio and sample builds</h2>
             <p className="section-subtitle">
-              Tools I use to build modern, responsive, production-ready
-              projects.
+              Keep your demos for now, but present them as polished sample work.
+              As you complete real client projects, place those first.
             </p>
 
-            <div className="stack-grid">
-              <article className="stack-card">
-                <h3>Frontend</h3>
-                <p className="stack-note">
-                  UI, components, layout, interactivity
-                </p>
-                <div className="chips">
-                  <span className="chip">React</span>
-                  <span className="chip">JavaScript</span>
-                  <span className="chip">HTML</span>
-                  <span className="chip">CSS</span>
-                </div>
-              </article>
-
-              <article className="stack-card">
-                <h3>Backend</h3>
-                <p className="stack-note">
-                  APIs, data, authentication patterns
-                </p>
-                <div className="chips">
-                  <span className="chip">Node.js</span>
-                  <span className="chip">Express</span>
-                  <span className="chip">MongoDB</span>
-                  <span className="chip">REST APIs</span>
-                </div>
-              </article>
-
-              <article className="stack-card">
-                <h3>Tools</h3>
-                <p className="stack-note">Build, deploy, and ship reliably</p>
-                <div className="chips">
-                  <span className="chip">Vite</span>
-                  <span className="chip">Netlify</span>
-                  <span className="chip">GitHub</span>
-                  <span className="chip">VS Code</span>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        {/* SERVICES */}
-        <section className="section" id="services">
-          <div className="container">
-            <h2 className="section-title">What I Can Help You With</h2>
-            <p className="section-subtitle">
-              Clear, straightforward services for small business owners who want
-              a website that just works.
-            </p>
-
-            <div className="cards services-grid">
-              <article className="card">
-                <h3>Custom Small Business Website</h3>
-                <p>
-                  A clean, modern website tailored to your brand, built to look
-                  good on phones, tablets, and desktops.
-                </p>
-                <ul className="card-list">
-                  <li>1–5 pages (Home, Services, About, Contact, etc.)</li>
-                  <li>Mobile-friendly design</li>
-                  <li>Contact form &amp; basic SEO</li>
-                </ul>
-                <p className="card-price">Typical projects from $500</p>
-              </article>
-
-              <article className="card">
-                <h3>Landing Page or Promo Site</h3>
-                <p>
-                  A single-page website perfect for launching a new service,
-                  event, or offer with a clear call-to-action.
-                </p>
-                <ul className="card-list">
-                  <li>One focused page</li>
-                  <li>Lead capture or booking button</li>
-                  <li>Fast, simple, and easy to update</li>
-                </ul>
-                <p className="card-price">Typical projects from $250</p>
-              </article>
-
-              <article className="card">
-                <h3>Website Refresh &amp; Cleanup</h3>
-                <p>
-                  Already have a website that feels outdated or messy? I can
-                  modernize the design and improve performance.
-                </p>
-                <ul className="card-list">
-                  <li>Design clean-up &amp; new layout</li>
-                  <li>Speed &amp; mobile improvements</li>
-                  <li>Content and structure polish</li>
-                </ul>
-                <p className="card-price">Hourly or fixed packages</p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        {/* WORK */}
-        <section className="section section-alt" id="work">
-          <div className="container">
-            <h2 className="section-title">Recent &amp; Sample Projects</h2>
-            <p className="section-subtitle">
-              A few examples of the type of websites I design and build.
-            </p>
-
-            <div className="work-grid">
-              <article className="work-item">
-                <div className="work-thumb">
+            <div className="work-list">
+              <article className="project-card">
+                <div className="project-image">
                   <img
                     src="/screenshots/screenshot1.png"
-                    alt="Pet Grooming Studio website preview"
+                    alt="Pet grooming website preview"
                   />
                 </div>
-                <div className="work-body">
-                  <div className="work-top">
-                    <h3>Pet Grooming Studio</h3>
-                    <span className="work-pill">Web</span>
-                  </div>
 
+                <div className="project-content">
+                  <p className="project-type">Sample Project</p>
+                  <h3>Pet Grooming Studio</h3>
                   <p>
-                    One-page website for a local pet groomer with services,
-                    pricing, and a simple booking form.
+                    A clean small business site concept with service sections,
+                    pricing, and a booking-focused layout.
                   </p>
 
-                  <div className="work-tags">
-                    <span className="tag">Responsive UI</span>
-                    <span className="tag">Netlify</span>
-                    <span className="tag">Forms</span>
+                  <div className="project-tags">
+                    <span>Responsive</span>
+                    <span>Service Business</span>
+                    <span>Lead Focused</span>
                   </div>
 
-                  <p className="work-meta">Tech: HTML, CSS, JS, Netlify</p>
-
-                  <div className="work-actions">
+                  <div className="project-actions">
                     <a
                       href="/demos/pet/index.html"
                       target="_blank"
                       rel="noreferrer"
-                      className="btn-secondary btn-sm"
+                      className="btn btn-secondary btn-sm"
                     >
                       Live Demo
                     </a>
-                    <a href="#contact" className="btn-primary btn-sm">
+                    <a href="#contact" className="btn btn-primary btn-sm">
                       Request Similar
                     </a>
                   </div>
                 </div>
               </article>
 
-              <article className="work-item">
-                <div className="work-thumb">
+              <article className="project-card">
+                <div className="project-image">
                   <img
                     src="/screenshots/screenshot2.png"
-                    alt="Local café landing page preview"
+                    alt="Cafe landing page preview"
                   />
                 </div>
-                <div className="work-body">
-                  <div className="work-top">
-                    <h3>Local Café Landing Page</h3>
-                    <span className="work-pill">Landing</span>
-                  </div>
 
+                <div className="project-content">
+                  <p className="project-type">Sample Project</p>
+                  <h3>Local Café Landing Page</h3>
                   <p>
-                    Landing page featuring menu highlights, hours, location, and
-                    a simple contact section for catering inquiries.
+                    A simple landing page concept built to showcase menu
+                    highlights, location, and local business branding.
                   </p>
 
-                  <div className="work-tags">
-                    <span className="tag">CTA Focused</span>
-                    <span className="tag">Clean Layout</span>
-                    <span className="tag">Fast Load</span>
+                  <div className="project-tags">
+                    <span>Landing Page</span>
+                    <span>Clean Layout</span>
+                    <span>Fast Load</span>
                   </div>
 
-                  <p className="work-meta">Tech: HTML, CSS, JS</p>
-
-                  <div className="work-actions">
+                  <div className="project-actions">
                     <a
                       href="/demos/cafe/index.html"
                       target="_blank"
                       rel="noreferrer"
-                      className="btn-secondary btn-sm"
+                      className="btn btn-secondary btn-sm"
                     >
                       Live Demo
                     </a>
-                    <a href="#contact" className="btn-primary btn-sm">
+                    <a href="#contact" className="btn btn-primary btn-sm">
                       Request Similar
                     </a>
                   </div>
                 </div>
               </article>
 
-              <article className="work-item">
-                <div className="work-thumb">
+              <article className="project-card">
+                <div className="project-image">
                   <img
                     src="/screenshots/screenshot3.png"
-                    alt="Home repair service website preview"
+                    alt="Service business website preview"
                   />
                 </div>
-                <div className="work-body">
-                  <div className="work-top">
-                    <h3>Service Business Portfolio</h3>
-                    <span className="work-pill">Business</span>
-                  </div>
 
+                <div className="project-content">
+                  <p className="project-type">Sample Project</p>
+                  <h3>Service Business Portfolio</h3>
                   <p>
-                    A simple site for a home-service business to showcase
-                    services, recent repairs, and an example quote form.
+                    A modern website concept for a service-based business with
+                    trust-building sections and a clean inquiry path.
                   </p>
 
-                  <div className="work-tags">
-                    <span className="tag">Netlify Forms</span>
-                    <span className="tag">Portfolio</span>
-                    <span className="tag">SEO Ready</span>
+                  <div className="project-tags">
+                    <span>Business Site</span>
+                    <span>Portfolio Style</span>
+                    <span>Contact Ready</span>
                   </div>
 
-                  <p className="work-meta">Tech: HTML, CSS, Netlify Forms</p>
-
-                  <div className="work-actions">
+                  <div className="project-actions">
                     <a
                       href="/demos/service/index.html"
                       target="_blank"
                       rel="noreferrer"
-                      className="btn-secondary btn-sm"
+                      className="btn btn-secondary btn-sm"
                     >
                       Live Demo
                     </a>
-                    <a href="#contact" className="btn-primary btn-sm">
+                    <a href="#contact" className="btn btn-primary btn-sm">
                       Request Similar
                     </a>
                   </div>
@@ -443,215 +338,139 @@ function App() {
           </div>
         </section>
 
-        {/* PROCESS */}
+        <section className="section section-alt" id="services">
+          <div className="container">
+            <p className="section-kicker">Services</p>
+            <h2 className="section-title">What I can help you with</h2>
+
+            <div className="services-grid">
+              <article className="info-card">
+                <span className="card-number">01</span>
+                <h3>Small Business Websites</h3>
+                <p>
+                  Custom websites for businesses that need a professional online
+                  presence and a clear place for customers to learn more or
+                  reach out.
+                </p>
+              </article>
+
+              <article className="info-card">
+                <span className="card-number">02</span>
+                <h3>Landing Pages</h3>
+                <p>
+                  Focused single-page websites for new offers, services,
+                  promotions, or personal brands.
+                </p>
+              </article>
+
+              <article className="info-card">
+                <span className="card-number">03</span>
+                <h3>Website Refreshes</h3>
+                <p>
+                  Design cleanups and layout improvements for websites that feel
+                  outdated, cluttered, or weak on mobile.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
         <section className="section" id="process">
           <div className="container">
-            <h2 className="section-title">How Working Together Works</h2>
-            <p className="section-subtitle">
-              A simple process so you know what to expect from day one.
-            </p>
+            <p className="section-kicker">Process</p>
+            <h2 className="section-title">Simple and client-friendly</h2>
 
-            <div className="process-grid">
-              <div className="process-step">
-                <span className="step-number">1</span>
-                <h3>Quick Call or Email</h3>
-                <p>
-                  You tell me about your business, your goals, and what you need
-                  your website to do.
-                </p>
+            <div className="process-list">
+              <div className="process-item">
+                <span>01</span>
+                <div>
+                  <h3>Quick conversation</h3>
+                  <p>
+                    You tell me what your business needs, what style you like,
+                    and what pages or features you want.
+                  </p>
+                </div>
               </div>
-              <div className="process-step">
-                <span className="step-number">2</span>
-                <h3>Plan &amp; Proposal</h3>
-                <p>
-                  I send a simple plan with pages, features, timeline, and
-                  price. No hidden fees or surprise add-ons.
-                </p>
+
+              <div className="process-item">
+                <span>02</span>
+                <div>
+                  <h3>Plan and quote</h3>
+                  <p>
+                    I send a clear outline with scope, pricing, and timeline so
+                    everything feels straightforward.
+                  </p>
+                </div>
               </div>
-              <div className="process-step">
-                <span className="step-number">3</span>
-                <h3>Design &amp; Build</h3>
-                <p>
-                  I design and build your site, share previews, and make
-                  revisions based on your feedback.
-                </p>
+
+              <div className="process-item">
+                <span>03</span>
+                <div>
+                  <h3>Build and review</h3>
+                  <p>
+                    I design and build the website, then share it with you for
+                    review and revisions.
+                  </p>
+                </div>
               </div>
-              <div className="process-step">
-                <span className="step-number">4</span>
-                <h3>Launch &amp; Support</h3>
-                <p>
-                  We launch your website on your domain and I can provide
-                  ongoing updates and maintenance if you’d like.
-                </p>
+
+              <div className="process-item">
+                <span>04</span>
+                <div>
+                  <h3>Launch</h3>
+                  <p>
+                    Once approved, I help launch the site and make sure it is
+                    ready to be shared with customers.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ABOUT */}
         <section className="section section-alt" id="about">
-          <div className="container about-grid">
-            <div>
-              <h2 className="section-title">About Me</h2>
+          <div className="container about-layout">
+            <div className="about-main">
+              <p className="section-kicker">About</p>
+              <h2 className="section-title">A clean, practical approach</h2>
               <p>
-                Hi, I’m Sergey Onoprichuk – a web developer based in Orlando, FL
-                and almost graduated from Full Sail University in Web
-                Development.
+                I’m Sergey Onoprichuk, a web developer based in Orlando,
+                Florida. I build modern websites with a focus on clarity,
+                responsiveness, and a polished presentation.
               </p>
               <p>
-                I build clean, modern websites and web apps that feel simple to
-                use — with performance, responsiveness, and clarity in mind.
-              </p>
-              <p>
-                I enjoy working directly with business owners, explaining things
-                in plain language and keeping the process stress-free.
+                My goal is to make the process simple for clients. I like
+                keeping communication clear, avoiding unnecessary complexity,
+                and building websites that feel professional and easy to use.
               </p>
             </div>
 
-            <div className="about-card">
-              <h3>Quick Details</h3>
-              <ul className="checklist">
-                <li>Based in Orlando, FL</li>
-                <li>Focused on small business &amp; local brands</li>
-                <li>React + modern JavaScript</li>
-                <li>Deployment with Netlify</li>
-                <li>Available for freelance &amp; ongoing work</li>
-              </ul>
-            </div>
+            <aside className="about-side">
+              <div className="about-box">
+                <p>Based in Orlando, FL</p>
+                <p>Focused on small business websites</p>
+                <p>React, JavaScript, HTML, CSS</p>
+                <p>Netlify deployment</p>
+                <p>Available for freelance work</p>
+              </div>
+            </aside>
           </div>
         </section>
 
-        {/* CONTACT */}
         <section className="section" id="contact">
-          <div className="container contact-grid">
-            <div>
-              <h2 className="section-title">Let’s Talk About Your Website</h2>
+          <div className="container contact-layout">
+            <div className="contact-copy">
+              <p className="section-kicker">Contact</p>
+              <h2 className="section-title">Let’s talk about your website</h2>
               <p className="section-subtitle">
-                Tell me a bit about your business and what you’re looking for.
-                I’ll get back to you with ideas and next steps.
+                Tell me about your business, your timeline, and what you want
+                your website to do.
               </p>
 
-              {/* ✅ Netlify form (AJAX submit + toast) */}
-              <form
-                name="contact"
-                method="POST"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
-                className="contact-form"
-                onSubmit={handleSubmit}
-              >
-                <input type="hidden" name="form-name" value="contact" />
-
-                <p hidden>
-                  <label>
-                    Don’t fill this out:
-                    <input
-                      name="bot-field"
-                      value={formData["bot-field"]}
-                      onChange={handleChange}
-                    />
-                  </label>
-                </p>
-
-                <div className="form-group">
-                  <label>Your Name *</label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Email *</label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Business Name</label>
-                  <input
-                    type="text"
-                    name="business"
-                    value={formData.business}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Current Website (if any)</label>
-                  <input
-                    type="url"
-                    name="website"
-                    value={formData.website}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>What do you need help with?</label>
-                  <select
-                    name="help"
-                    value={formData.help}
-                    onChange={handleChange}
-                  >
-                    <option value="new-site">New website</option>
-                    <option value="redesign">Redesign or refresh</option>
-                    <option value="landing-page">Landing page</option>
-                    <option value="other">Something else</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label>Project details *</label>
-                  <textarea
-                    name="message"
-                    required
-                    placeholder="Tell me about your business, goals, and timeline."
-                    value={formData.message}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <button type="submit">Send Message</button>
-              </form>
-            </div>
-
-            <div className="contact-info">
-              <h3>Contact Details</h3>
-
-              <p>
-                <strong>Email:</strong>
-                <br />
-                <a href="mailto:anytimegiftllc@gmail.com">
-                  anytimegiftllc@gmail.com
+              <div className="contact-links">
+                <a href="mailto:hello@onoprichukwebstudio.com">
+                  hello@onoprichukwebstudio.com
                 </a>
-              </p>
-
-              <p>
-                <strong>Based in:</strong>
-                <br />
-                Orlando, FL
-              </p>
-
-              <p>
-                <strong>Social:</strong>
-                <br />
-                <a
-                  href="https://www.instagram.com/onoprichuk_/?hl=en"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Instagram
-                </a>
-                <br />
                 <a
                   href="https://www.linkedin.com/in/sergey-onoprichuk-90b969399/"
                   target="_blank"
@@ -659,7 +478,6 @@ function App() {
                 >
                   LinkedIn
                 </a>
-                <br />
                 <a
                   href="https://github.com/OnoprichukSergey-FS"
                   target="_blank"
@@ -667,23 +485,122 @@ function App() {
                 >
                   GitHub
                 </a>
+                <a
+                  href="https://www.instagram.com/onoprichuk_/?hl=en"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
+              </div>
+            </div>
+
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              data-netlify-honeypot="bot-field"
+              className="contact-form"
+              onSubmit={handleSubmit}
+            >
+              <input type="hidden" name="form-name" value="contact" />
+
+              <p hidden>
+                <label>
+                  Don’t fill this out:
+                  <input
+                    name="bot-field"
+                    value={formData["bot-field"]}
+                    onChange={handleChange}
+                  />
+                </label>
               </p>
 
-              <p className="small">
-                I typically reply within 1–2 business days.
-              </p>
-            </div>
+              <div className="form-group">
+                <label htmlFor="name">Your Name *</label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="email">Email *</label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="business">Business Name</label>
+                <input
+                  id="business"
+                  type="text"
+                  name="business"
+                  value={formData.business}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="website">Current Website</label>
+                <input
+                  id="website"
+                  type="url"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="help">What do you need help with?</label>
+                <select
+                  id="help"
+                  name="help"
+                  value={formData.help}
+                  onChange={handleChange}
+                >
+                  <option value="new-site">New website</option>
+                  <option value="redesign">Website redesign</option>
+                  <option value="landing-page">Landing page</option>
+                  <option value="other">Something else</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="message">Project Details *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell me about your business, the pages you need, and your goals."
+                  required
+                />
+              </div>
+
+              <button type="submit" className="form-submit">
+                Send Message
+              </button>
+            </form>
           </div>
         </section>
       </main>
 
-      {/* FOOTER */}
       <footer className="site-footer">
         <div className="container footer-inner">
-          <p>© {year} Sergey Onoprichuk. All rights reserved.</p>
-          <p className="footer-links">
-            <a href="#top">Back to top</a>
-          </p>
+          <p>© {year} Onoprichuk Web Studio</p>
+          <a href="#top">Back to top</a>
         </div>
       </footer>
     </>
