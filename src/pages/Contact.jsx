@@ -108,10 +108,13 @@ function Contact() {
         <section className="page-hero">
           <div className="container">
             <p className="section-kicker">Contact</p>
-            <h1 className="section-title">Let’s talk about your website</h1>
+            <h1 className="section-title">
+              Let’s build something that works for your business
+            </h1>
             <p className="section-subtitle">
-              Tell me about your business, your timeline, and what you want your
-              website to do.
+              Tell me what you’re looking for, and I’ll help you create a
+              website that feels clear, professional, and built for real
+              results.
             </p>
           </div>
         </section>
@@ -122,8 +125,8 @@ function Contact() {
               <div className="contact-card">
                 <h2>Start a project</h2>
                 <p>
-                  A simple message is enough. Tell me what you need, and I’ll
-                  get back to you.
+                  A simple message is enough. Tell me about your business, what
+                  you need, and your timeline — I’ll take care of the rest.
                 </p>
 
                 <div className="contact-links">

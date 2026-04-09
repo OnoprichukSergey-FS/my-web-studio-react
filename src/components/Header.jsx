@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useState } from "react";
 
 function Header() {
@@ -6,18 +6,31 @@ function Header() {
 
   const closeMenu = () => setNavOpen(false);
 
+  const getNavClass = ({ isActive }) =>
+    isActive ? "nav-link active" : "nav-link";
+
   return (
-    <header className="site-header">
-      <div className="container header-inner">
-        <Link to="/" className="logo" aria-label="Onoprichuk Web Studio home">
+    <header className="site-header premium-header">
+      <div className="container header-inner premium-header-inner">
+        <NavLink
+          to="/"
+          className="logo premium-logo"
+          aria-label="Onoprichuk Web Studio home"
+          onClick={closeMenu}
+        >
           <img
             src="/logo_dark.png"
             alt="Onoprichuk Web Studio"
-            className="site-logo"
+            className="site-logo premium-site-logo"
           />
-        </Link>
 
-        <nav className="nav">
+          <div className="logo-text-lockup">
+            <span className="logo-kicker">Orlando Web Studio</span>
+            <span className="logo-name">Onoprichuk Web Studio</span>
+          </div>
+        </NavLink>
+
+        <nav className="nav premium-nav">
           <button
             className="nav-toggle"
             aria-label="Toggle navigation"
@@ -26,31 +39,45 @@ function Header() {
             ☰
           </button>
 
-          <ul className={`nav-links ${navOpen ? "show" : ""}`}>
+          <ul
+            className={`nav-links premium-nav-links ${navOpen ? "show" : ""}`}
+          >
             <li>
-              <Link to="/work" onClick={closeMenu}>
+              <NavLink to="/work" className={getNavClass} onClick={closeMenu}>
                 Work
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/services" onClick={closeMenu}>
+              <NavLink
+                to="/services"
+                className={getNavClass}
+                onClick={closeMenu}
+              >
                 Services
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/about" onClick={closeMenu}>
+              <NavLink to="/about" className={getNavClass} onClick={closeMenu}>
                 About
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/contact" onClick={closeMenu}>
+              <NavLink
+                to="/contact"
+                className={getNavClass}
+                onClick={closeMenu}
+              >
                 Contact
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to="/contact" className="nav-cta" onClick={closeMenu}>
+              <NavLink
+                to="/contact"
+                className="nav-cta premium-nav-cta"
+                onClick={closeMenu}
+              >
                 Start a Project
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
