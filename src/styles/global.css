@@ -150,7 +150,6 @@ select {
   color: var(--white);
 }
 
-/* important overflow safety */
 main,
 section,
 div,
@@ -275,10 +274,12 @@ main {
   position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100%;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   background: rgba(8, 8, 8, 0.78);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: visible;
 }
 
 .header-inner {
@@ -288,13 +289,14 @@ main {
   justify-content: space-between;
   gap: 24px;
   min-width: 0;
+  position: relative;
 }
 
 .logo {
   display: inline-flex;
   align-items: center;
-  flex-shrink: 1;
   min-width: 0;
+  flex-shrink: 1;
 }
 
 .premium-logo {
@@ -341,14 +343,16 @@ main {
   display: flex;
   align-items: center;
   min-width: 0;
+  z-index: 1100;
 }
 
 .nav-toggle {
   display: none;
   color: var(--white);
-  font-size: 24px;
+  font-size: 28px;
   line-height: 1;
   flex-shrink: 0;
+  padding: 6px;
 }
 
 .nav-links {
@@ -1905,42 +1909,74 @@ main {
     max-width: 140px;
   }
 
+  .nav {
+    margin-left: auto;
+  }
+
   .nav-toggle {
     display: block;
   }
 
   .nav-links {
     position: absolute;
-    top: calc(100% + 1px);
+    top: calc(100% + 12px);
     right: 0;
     left: auto;
-    width: min(290px, calc(100vw - 24px));
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    width: min(300px, calc(100vw - 24px));
     max-width: calc(100vw - 24px);
-    padding: 16px;
+    padding: 10px;
     border-radius: 20px;
     border: 1px solid var(--border);
-    background: rgba(10, 10, 10, 0.96);
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-    box-shadow: var(--shadow-soft);
+    background: rgba(10, 10, 10, 0.97);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
     transform: translateY(-8px);
-    transition: 0.22s ease;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+    z-index: 1200;
     overflow: hidden;
   }
 
   .nav-links.show {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
     transform: translateY(0);
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    width: 100%;
+    display: block;
+    padding: 14px 12px;
+    border-radius: 14px;
+  }
+
+  .nav-links a::after {
+    display: none;
+  }
+
+  .nav-links a:hover,
+  .nav-link.active {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--white);
   }
 
   .nav-cta {
     width: 100%;
     justify-content: center;
-    margin-top: 2px;
+    text-align: center;
+    margin-top: 8px;
   }
 
   .hero,
