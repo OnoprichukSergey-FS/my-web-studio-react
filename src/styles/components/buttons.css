@@ -1,0 +1,83 @@
+/* =========================
+   BUTTONS
+========================= */
+.btn {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  max-width: 100%;
+  padding: 14px 24px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  transition: transform 0.22s ease, border-color 0.22s ease,
+    background 0.22s ease, color 0.22s ease, opacity 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.12) 45%,
+    transparent 100%
+  );
+  transform: translateX(-130%);
+  transition: transform 0.55s ease;
+}
+
+.btn:hover::before {
+  transform: translateX(130%);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #ffffff, #dddddd);
+  color: #090909;
+  box-shadow: 0 14px 30px rgba(255, 255, 255, 0.12);
+}
+
+.btn-primary:hover {
+  opacity: 0.95;
+}
+
+.btn-secondary {
+  border-color: var(--border-strong);
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-sm {
+  min-height: 46px;
+  padding: 12px 20px;
+  font-size: 15px;
+}
+
+@media (max-width: 520px) {
+  .btn,
+  .btn-sm {
+    min-height: 50px;
+    padding: 13px 18px;
+  }
+}

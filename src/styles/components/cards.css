@@ -1,0 +1,196 @@
+/* =========================
+   SHARED PANEL / CARD BASE
+========================= */
+.info-card,
+.about-card,
+.about-box,
+.contact-card,
+.contact-form,
+.service-block,
+.services-cta-box,
+.process-item,
+.work-hero-note,
+.services-hero-note,
+.about-hero-note,
+.work-bottom-cta,
+.services-editorial-cta,
+.about-editorial-cta,
+.about-feature-card,
+.editorial-service,
+.about-editorial-block {
+  min-width: 0;
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.045),
+    rgba(255, 255, 255, 0.02)
+  );
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.28s ease, box-shadow 0.28s ease,
+    border-color 0.28s ease, background 0.28s ease, opacity 0.28s ease,
+    color 0.28s ease;
+}
+
+/* =========================
+   SERVICES PREVIEW / SHARED CARDS
+========================= */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 58px;
+}
+
+.info-card {
+  border-radius: var(--radius);
+  padding: 32px 28px;
+}
+
+.info-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.14);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.065),
+    rgba(255, 255, 255, 0.03)
+  );
+}
+
+.card-number {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 17px;
+}
+
+.info-card h3 {
+  font-size: 24px;
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  margin-bottom: 12px;
+}
+
+.info-card p {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.card-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 18px;
+  color: var(--white);
+  font-size: 15px;
+}
+
+.card-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.24s ease;
+  opacity: 0.8;
+}
+
+.card-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* =========================
+   HOVER POLISH (SHARED CARDS)
+========================= */
+.hero-stat-card:hover,
+.work-hero-note:hover,
+.services-hero-note:hover,
+.about-hero-note:hover,
+.contact-card:hover,
+.contact-form:hover,
+.about-card:hover,
+.about-box:hover,
+.process-item:hover,
+.services-cta-box:hover,
+.work-bottom-cta:hover,
+.services-editorial-cta:hover,
+.about-editorial-cta:hover,
+.about-feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.3);
+}
+
+.hero-stat-card:hover {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.03)
+  );
+}
+
+@media (max-width: 1120px) {
+  .services-grid,
+  .about-grid,
+  .hero-stat-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .project-content,
+  .info-card,
+  .services-cta-box,
+  .process-item,
+  .contact-card,
+  .contact-form,
+  .hero-showcase-content,
+  .work-bottom-cta,
+  .services-editorial-cta,
+  .about-editorial-cta,
+  .work-hero-note,
+  .services-hero-note,
+  .about-hero-note,
+  .editorial-service,
+  .about-editorial-block,
+  .about-feature-card {
+    padding: 24px 20px;
+  }
+
+  .editorial-project-media,
+  .editorial-service,
+  .about-editorial-block,
+  .about-feature-card,
+  .about-editorial-cta,
+  .services-editorial-cta,
+  .services-hero-note,
+  .about-hero-note,
+  .work-hero-note,
+  .work-bottom-cta {
+    border-radius: 24px;
+  }
+
+  .info-card:hover,
+  .about-feature-card:hover,
+  .hero-stat-card:hover,
+  .work-hero-note:hover,
+  .services-hero-note:hover,
+  .about-hero-note:hover,
+  .contact-card:hover,
+  .contact-form:hover,
+  .about-card:hover,
+  .about-box:hover,
+  .process-item:hover,
+  .services-cta-box:hover,
+  .work-bottom-cta:hover,
+  .services-editorial-cta:hover,
+  .about-editorial-cta:hover {
+    transform: none;
+  }
+}

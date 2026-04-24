@@ -105,17 +105,29 @@ function Contact() {
       </div>
 
       <main id="top">
-        <section className="page-hero">
-          <div className="container">
-            <p className="section-kicker">Contact</p>
-            <h1 className="section-title">
-              Let’s build something that works for your business
-            </h1>
-            <p className="section-subtitle">
-              Tell me what you’re looking for, and I’ll help you create a
-              website that feels clear, professional, and built for real
-              results.
-            </p>
+        <section className="page-hero contact-page-hero">
+          <div className="container contact-hero-layout">
+            <div className="contact-hero-copy">
+              <p className="section-kicker">Contact</p>
+              <h1 className="section-title">
+                Let’s build something that works for your business
+              </h1>
+              <p className="section-subtitle">
+                Tell me what you need, and I’ll help you figure out the best
+                direction for a site that feels clear, professional, and built
+                to create a stronger first impression.
+              </p>
+            </div>
+
+            <div className="contact-hero-side">
+              <div className="contact-hero-note">
+                <span className="contact-note-label">Good fit for</span>
+                <p>
+                  Small businesses, service brands, studios, and businesses that
+                  want a cleaner and more credible online presence.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -126,7 +138,13 @@ function Contact() {
                 <h2>Start a project</h2>
                 <p>
                   A simple message is enough. Tell me about your business, what
-                  you need, and your timeline — I’ll take care of the rest.
+                  you need, and what feels missing from your current online
+                  presence.
+                </p>
+
+                <p className="contact-support-text">
+                  You do not need to have everything figured out — I can help
+                  you decide the best direction.
                 </p>
 
                 <div className="contact-links">
@@ -226,12 +244,12 @@ function Contact() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  placeholder="Tell me about your business, the pages you need, and your goals."
+                  placeholder="Tell me about your business, what you need, and what you want your website to improve."
                   required
                 />
               </div>
 
-              <button type="submit" className="form-submit">
+              <button type="submit" className="btn btn-primary contact-submit">
                 Send Message
               </button>
             </form>

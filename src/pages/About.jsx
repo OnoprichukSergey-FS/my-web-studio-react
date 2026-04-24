@@ -22,8 +22,8 @@ function About() {
               <span className="about-note-label">What I care about</span>
               <p>
                 Clear structure, thoughtful design, strong presentation, and a
-                site that feels like it matches the quality of the business
-                behind it.
+                site that feels like it properly matches the quality of the
+                business behind it.
               </p>
             </div>
           </div>
@@ -37,7 +37,7 @@ function About() {
 
             <div className="about-editorial-main">
               <p className="about-editorial-label">Who I am</p>
-              <h2>Focused on small business presentation</h2>
+              <h2>Focused on helping small businesses look stronger online</h2>
               <p className="about-editorial-lead">
                 I’m Sergey Onoprichuk, a web developer based in Orlando,
                 Florida. I focus on building clean, modern websites for small
@@ -49,18 +49,18 @@ function About() {
                 <div>
                   <span className="about-point-title">What I noticed</span>
                   <p>
-                    Many small business websites do not fail because they lack
-                    features — they fail because they feel outdated, cluttered,
-                    or unclear.
+                    Many small business websites do not feel weak because they
+                    lack features — they feel weak because they look outdated,
+                    cluttered, or unclear.
                   </p>
                 </div>
 
                 <div>
                   <span className="about-point-title">What I focus on</span>
                   <p>
-                    I help fix that through better structure, stronger visual
-                    presentation, and a simpler path for customers to understand
-                    the business and take action.
+                    I help improve that through better structure, stronger
+                    visual presentation, and a simpler path for customers to
+                    understand the business and take action.
                   </p>
                 </div>
               </div>
@@ -92,7 +92,7 @@ function About() {
                 <div>
                   <span className="about-point-title">Why it matters</span>
                   <p>
-                    A business website should not just exist — it should make
+                    A business website should not just exist — it should help
                     the business feel established, easier to understand, and
                     more credible right away.
                   </p>
@@ -137,7 +137,7 @@ function About() {
           </section>
 
           <div className="about-editorial-cta">
-            <p className="section-kicker">Next step</p>
+            <p className="section-kicker">Next Step</p>
             <h2 className="services-cta-title">
               Let’s build something that feels like a better fit for your
               business

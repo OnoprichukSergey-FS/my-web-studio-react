@@ -1,27 +1,197 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+const processSteps = [
+  {
+    number: "01",
+    title: "Quick conversation",
+    text: "You tell me about your business, what you need, what feels missing, and the style direction you like.",
+  },
+  {
+    number: "02",
+    title: "Structure and design",
+    text: "I plan the layout, content flow, and visual direction so the site feels clear, polished, and easy to follow.",
+  },
+  {
+    number: "03",
+    title: "Build and refine",
+    text: "The website is built responsively, then refined across desktop, tablet, and mobile so everything feels clean.",
+  },
+  {
+    number: "04",
+    title: "Launch",
+    text: "Once everything feels aligned with your business, the site is prepared and ready to go live.",
+  },
+];
+
+const faqs = [
+  {
+    question: "Do I need to know exactly what I want?",
+    answer:
+      "No. You can simply explain your business, what feels off, and what you want your website to improve.",
+  },
+  {
+    question: "Can you redesign my current website?",
+    answer:
+      "Yes. If your current site needs better structure, cleaner mobile design, or a more polished look, a refresh can be a great option.",
+  },
+  {
+    question: "What kinds of businesses are the best fit?",
+    answer:
+      "Small businesses, service providers, beauty brands, studios, auto businesses, and local brands that want to look more established.",
+  },
+  {
+    question: "How long does a project take?",
+    answer:
+      "It depends on the size of the project. Once I understand what you need, I can give you a realistic timeline.",
+  },
+  {
+    question: "Do you only build new websites?",
+    answer:
+      "No. I can help with new websites, landing pages, and website refreshes depending on what your business actually needs.",
+  },
+];
+
+function ProcessSteps() {
+  const [activeStep, setActiveStep] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const goToPrevious = () => {
+    setActiveStep((prev) => (prev === 0 ? processSteps.length - 1 : prev - 1));
+  };
+
+  const goToNext = () => {
+    setActiveStep((prev) => (prev === processSteps.length - 1 ? 0 : prev + 1));
+  };
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      setActiveStep((prev) =>
+        prev === processSteps.length - 1 ? 0 : prev + 1
+      );
+    }, 4500);
+
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
+  return (
+    <div
+      className="process-modern reveal-up reveal-delay-1"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <div className="process-step-nav">
+        <div className="process-progress-track">
+          <div
+            className="process-progress-fill"
+            style={{
+              height: `${((activeStep + 1) / processSteps.length) * 100}%`,
+            }}
+          />
+        </div>
+
+        {processSteps.map((step, index) => (
+          <button
+            key={step.number}
+            className={`process-step-button ${
+              activeStep === index ? "active" : ""
+            }`}
+            onClick={() => setActiveStep(index)}
+            onMouseEnter={() => setActiveStep(index)}
+            type="button"
+          >
+            <span>{step.number}</span>
+            <strong>{step.title}</strong>
+          </button>
+        ))}
+      </div>
+
+      <div className="process-step-panel" key={activeStep}>
+        <div className="process-panel-top">
+          <span className="process-panel-number">
+            {processSteps[activeStep].number}
+          </span>
+
+          <div className="process-arrow-controls">
+            <button
+              type="button"
+              onClick={goToPrevious}
+              aria-label="Previous step"
+            >
+              ←
+            </button>
+            <button type="button" onClick={goToNext} aria-label="Next step">
+              →
+            </button>
+          </div>
+        </div>
+
+        <h3>{processSteps[activeStep].title}</h3>
+        <p>{processSteps[activeStep].text}</p>
+
+        <div className="process-panel-bottom">
+          <span>
+            Step {activeStep + 1} of {processSteps.length}
+          </span>
+
+          <button type="button" onClick={() => setIsPaused((prev) => !prev)}>
+            {isPaused ? "Resume auto-play" : "Pause auto-play"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FAQAccordion() {
+  const [openIndex, setOpenIndex] = useState(0);
+
+  return (
+    <div className="faq-modern reveal-up reveal-delay-1">
+      {faqs.map((faq, index) => (
+        <div
+          key={faq.question}
+          className={`faq-modern-item ${openIndex === index ? "open" : ""}`}
+        >
+          <button
+            type="button"
+            className="faq-modern-question"
+            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+          >
+            <span>{faq.question}</span>
+            <strong>{openIndex === index ? "–" : "+"}</strong>
+          </button>
+
+          <div className="faq-modern-answer">
+            <div className="faq-modern-answer-inner">
+              <p>{faq.answer}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 function Home() {
   return (
     <main id="top">
       <section className="hero hero-premium">
         <div className="container hero-premium-layout">
-          <div className="hero-premium-copy">
+          <div className="hero-premium-copy reveal-up">
             <p className="eyebrow">Freelance Web Studio · Orlando, FL</p>
-
-            <div className="hero-badge-row">
-              <span className="hero-badge">Client-focused websites</span>
-              <span className="hero-badge">Modern design</span>
-            </div>
 
             <h1>
               Websites that make your business feel
-              <span className="hero-highlight"> more established</span>
+              <span className="hero-highlight"> more credible</span>
             </h1>
 
             <p className="hero-copy">
-              I design and build polished websites for small businesses that
-              want to look professional, earn trust faster, and turn more
-              visitors into real inquiries.
+              I design and build clean, polished websites for small businesses
+              that want a stronger first impression and a more professional
+              online presence.
             </p>
 
             <div className="hero-actions">
@@ -34,69 +204,81 @@ function Home() {
               </Link>
             </div>
 
-            <div className="hero-stat-row">
-              <div className="hero-stat-card">
-                <strong>Small business focus</strong>
-                <span>Built for service-based brands and local businesses</span>
-              </div>
-
-              <div className="hero-stat-card">
-                <strong>Modern presentation</strong>
-                <span>Clear structure, mobile-friendly, polished visuals</span>
-              </div>
-            </div>
+            <p className="hero-trust-line">
+              Custom websites for service-based businesses, studios, and local
+              brands.
+            </p>
           </div>
 
-          <div className="hero-premium-visual">
-            <div className="hero-showcase-card hero-showcase-main">
-              <div className="hero-showcase-top">
+          <div className="hero-premium-visual reveal-up reveal-delay-1">
+            <div className="hero-orb hero-orb-one" />
+            <div className="hero-orb hero-orb-two" />
+
+            <div className="hero-device-frame">
+              <div className="hero-device-topbar">
                 <span className="hero-window-dot" />
                 <span className="hero-window-dot" />
                 <span className="hero-window-dot" />
               </div>
 
-              <div className="hero-showcase-content">
-                <p className="hero-showcase-label">Featured build</p>
-                <h3>Modern websites for real businesses</h3>
-                <p>
-                  Clean design, stronger trust, and a more professional online
-                  presence.
-                </p>
+              <div className="hero-device-screen">
+                <div className="hero-screen-copy">
+                  <p className="hero-screen-kicker">Studio Preview</p>
+                  <h3>Clean websites built to elevate your business online</h3>
+                  <p>
+                    Clear structure, polished visuals, and a site that feels
+                    easy to trust.
+                  </p>
 
-                <div className="hero-mini-tags">
-                  <span>Custom-built</span>
-                  <span>Responsive</span>
-                  <span>Lead-focused</span>
+                  <div className="hero-mini-tags">
+                    <span>Custom design</span>
+                    <span>Responsive</span>
+                    <span>Lead-focused</span>
+                  </div>
+                </div>
+
+                <div className="hero-preview-window">
+                  <div className="hero-preview-header" />
+                  <div className="hero-preview-hero" />
+                  <div className="hero-preview-lines">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                  <div className="hero-preview-cards">
+                    <div />
+                    <div />
+                    <div />
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="hero-floating-card hero-floating-card-one">
-              <span className="hero-floating-title">Best for</span>
-              <p>Beauty brands, local services, auto shops, studios</p>
-            </div>
-
-            <div className="hero-floating-card hero-floating-card-two">
-              <span className="hero-floating-title">What clients need</span>
-              <p>A site that looks credible before anyone even calls</p>
+            <div className="hero-floating-metric">
+              <span className="hero-floating-label">Best fit</span>
+              <p>
+                Beauty brands, service businesses, studios, and local brands.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section" id="featured-work">
+      <section className="section home-proof-section" id="featured-work">
         <div className="container">
-          <p className="section-kicker">Selected Work</p>
-          <h2 className="section-title">
-            Real projects built for real businesses
-          </h2>
-          <p className="section-subtitle">
-            A selection of client-focused websites designed to improve clarity,
-            presentation, and trust — not just look good.
-          </p>
+          <div className="home-section-heading reveal-up">
+            <p className="section-kicker">Selected Work</p>
+            <h2 className="section-title">
+              Real projects built for real businesses
+            </h2>
+            <p className="section-subtitle">
+              A few examples of websites designed to improve clarity,
+              presentation, and trust.
+            </p>
+          </div>
 
           <div className="work-list">
-            <article className="project-card">
+            <article className="project-card reveal-up reveal-delay-1">
               <div className="project-image">
                 <img
                   src="/screenshots/torqueforge-home.png"
@@ -108,9 +290,8 @@ function Home() {
                 <p className="project-type">Client Project</p>
                 <h3>TorqueForge Auto</h3>
                 <p>
-                  A bold, high-impact website for an auto body shop focused on
-                  building trust, showcasing services clearly, and driving
-                  estimate requests.
+                  A bold website for an auto body shop designed to feel
+                  credible, capable, and easy to contact.
                 </p>
 
                 <div className="project-tags">
@@ -136,7 +317,7 @@ function Home() {
               </div>
             </article>
 
-            <article className="project-card">
+            <article className="project-card reveal-up reveal-delay-2">
               <div className="project-image">
                 <img
                   src="/screenshots/orlando-beauty-home.png"
@@ -148,9 +329,8 @@ function Home() {
                 <p className="project-type">Client Project</p>
                 <h3>Orlando Beauty Studio</h3>
                 <p>
-                  A soft, elegant website designed to reflect a premium beauty
-                  brand, improve service presentation, and support online
-                  bookings.
+                  A refined beauty website created to improve presentation,
+                  support bookings, and make the brand feel more elevated.
                 </p>
 
                 <div className="project-tags">
@@ -177,7 +357,7 @@ function Home() {
             </article>
           </div>
 
-          <div className="work-cta">
+          <div className="home-proof-cta reveal-up">
             <Link to="/work" className="btn btn-secondary">
               View All Work
             </Link>
@@ -185,103 +365,97 @@ function Home() {
         </div>
       </section>
 
-      <section className="section section-alt">
+      <section className="section section-alt home-process-section">
         <div className="container">
-          <p className="section-kicker">Services</p>
-          <h2 className="section-title">What I can help you with</h2>
-          <p className="section-subtitle">
-            Clear, modern websites that make your business look more polished
-            and make it easier for customers to trust you.
-          </p>
+          <div className="home-section-heading reveal-up">
+            <p className="section-kicker">Process</p>
+            <h2 className="section-title">Simple from start to launch</h2>
+            <p className="section-subtitle">
+              A clean process that keeps the project clear, organized, and easy
+              to follow.
+            </p>
+          </div>
 
-          <div className="services-grid">
-            <article className="info-card">
-              <span className="card-number">01</span>
-              <h3>Small Business Websites</h3>
+          <ProcessSteps />
+        </div>
+      </section>
+
+      <section className="section home-trust-section">
+        <div className="container">
+          <div className="home-section-heading reveal-up">
+            <p className="section-kicker">Trust & Fit</p>
+            <h2 className="section-title">
+              Built for businesses that want to look more established
+            </h2>
+            <p className="section-subtitle">
+              A better website can change how people see your business before
+              they ever contact you.
+            </p>
+          </div>
+
+          <div className="trust-simple-grid">
+            <article className="trust-simple-card reveal-up reveal-delay-1">
+              <span>Best fit</span>
               <p>
-                Complete websites designed to give your business a stronger
-                online presence and a more professional first impression.
+                Service businesses, beauty brands, studios, auto businesses, and
+                local brands.
               </p>
-              <Link to="/services" className="card-link">
-                View Services
-              </Link>
             </article>
 
-            <article className="info-card">
-              <span className="card-number">02</span>
-              <h3>Landing Pages</h3>
+            <article className="trust-simple-card reveal-up reveal-delay-2">
+              <span>What improves</span>
               <p>
-                Focused pages built around one service, offer, or campaign to
-                help turn visitors into real inquiries.
+                Clarity, mobile polish, visual presentation, and the first
+                impression your business makes.
               </p>
-              <Link to="/services" className="card-link">
-                View Services
-              </Link>
             </article>
 
-            <article className="info-card">
-              <span className="card-number">03</span>
-              <h3>Website Refreshes</h3>
+            <article className="trust-simple-card reveal-up reveal-delay-3">
+              <span>What matters</span>
               <p>
-                Strategic visual and layout updates for websites that feel
-                outdated, cluttered, or underwhelming on mobile.
+                Your website should feel aligned with the quality of your actual
+                work.
               </p>
-              <Link to="/services" className="card-link">
-                View Services
-              </Link>
             </article>
           </div>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section-alt home-faq-section">
         <div className="container">
-          <p className="section-kicker">Process</p>
-          <h2 className="section-title">Simple and client-friendly</h2>
+          <div className="home-section-heading reveal-up">
+            <p className="section-kicker">FAQ</p>
+            <h2 className="section-title">Questions before starting?</h2>
+            <p className="section-subtitle">
+              A few quick answers before you reach out.
+            </p>
+          </div>
 
-          <div className="process-list">
-            <div className="process-item">
-              <span>01</span>
-              <div>
-                <h3>Quick conversation</h3>
-                <p>
-                  You tell me what your business needs, what style you like, and
-                  what pages or features you want.
-                </p>
-              </div>
-            </div>
+          <FAQAccordion />
+        </div>
+      </section>
 
-            <div className="process-item">
-              <span>02</span>
-              <div>
-                <h3>Plan and quote</h3>
-                <p>
-                  I send a clear outline with scope, pricing, and timeline so
-                  everything feels straightforward.
-                </p>
-              </div>
-            </div>
+      <section className="section home-final-cta-section">
+        <div className="container">
+          <div className="home-final-cta reveal-up">
+            <p className="section-kicker">Next Step</p>
+            <h2 className="services-cta-title">
+              Let’s build a website that feels like a better fit for your
+              business
+            </h2>
+            <p className="section-subtitle">
+              If your current website feels outdated, unclear, or weaker than
+              your business deserves, I can help you create something more
+              polished and more credible.
+            </p>
 
-            <div className="process-item">
-              <span>03</span>
-              <div>
-                <h3>Build and review</h3>
-                <p>
-                  I design and build the website, then share it with you for
-                  review and revisions.
-                </p>
-              </div>
-            </div>
-
-            <div className="process-item">
-              <span>04</span>
-              <div>
-                <h3>Launch</h3>
-                <p>
-                  Once approved, I help launch the site and make sure it is
-                  ready to be shared with customers.
-                </p>
-              </div>
+            <div className="services-cta-actions">
+              <Link to="/contact" className="btn btn-primary">
+                Start a Project
+              </Link>
+              <Link to="/work" className="btn btn-secondary">
+                View Work
+              </Link>
             </div>
           </div>
         </div>

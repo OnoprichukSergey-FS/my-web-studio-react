@@ -22,7 +22,8 @@ function Services() {
               <span className="services-note-label">What this means</span>
               <p>
                 Better presentation, more trust, easier navigation, and a site
-                that feels like it matches the quality of your business.
+                that feels like it properly reflects the quality of your
+                business.
               </p>
             </div>
           </div>
@@ -39,8 +40,8 @@ function Services() {
               <h2>Small Business Websites</h2>
               <p className="editorial-service-lead">
                 A complete website tailored to your business, designed to
-                clearly explain what you do, present your services well, and
-                make a much stronger first impression.
+                present your services clearly, improve trust, and make a much
+                stronger first impression online.
               </p>
 
               <div className="editorial-service-points">
@@ -53,18 +54,18 @@ function Services() {
                 </div>
 
                 <div>
-                  <span className="editorial-point-title">Includes</span>
+                  <span className="editorial-point-title">What improves</span>
                   <p>
-                    Custom homepage design, service pages, contact sections,
-                    mobile-friendly layout, and a cleaner overall presentation.
+                    Clearer structure, stronger service presentation, better
+                    mobile experience, and a more polished overall brand feel.
                   </p>
                 </div>
               </div>
 
               <ul className="editorial-service-list">
                 <li>Custom homepage design</li>
-                <li>Mobile-friendly layout</li>
                 <li>Service and contact pages</li>
+                <li>Mobile-friendly layout</li>
                 <li>Clear, modern structure</li>
               </ul>
             </div>
@@ -78,7 +79,7 @@ function Services() {
               <h2>Landing Pages</h2>
               <p className="editorial-service-lead">
                 Focused pages built around one service, offer, or campaign —
-                designed to guide visitors quickly and turn attention into real
+                designed to guide attention quickly and turn interest into real
                 inquiries.
               </p>
 
@@ -86,25 +87,25 @@ function Services() {
                 <div>
                   <span className="editorial-point-title">Best for</span>
                   <p>
-                    Promotions, new offers, ad traffic, seasonal services, or
-                    businesses that need a simpler website structure.
+                    Promotions, new offers, seasonal services, ad traffic, or
+                    businesses that need a simpler but stronger online presence.
                   </p>
                 </div>
 
                 <div>
-                  <span className="editorial-point-title">Includes</span>
+                  <span className="editorial-point-title">What improves</span>
                   <p>
-                    A strong call-to-action structure, focused content flow, and
-                    a cleaner path from interest to contact.
+                    Stronger calls to action, clearer content flow, and a more
+                    direct path from visitor interest to contact.
                   </p>
                 </div>
               </div>
 
               <ul className="editorial-service-list">
                 <li>Simple, high-conversion layout</li>
-                <li>Strong call-to-action sections</li>
+                <li>Focused service messaging</li>
                 <li>Fast and distraction-free experience</li>
-                <li>Great for ads or promotions</li>
+                <li>Great for campaigns and promotions</li>
               </ul>
             </div>
           </article>
@@ -118,7 +119,7 @@ function Services() {
               <p className="editorial-service-lead">
                 Improve your current website without starting from scratch.
                 Ideal for businesses that already have a site but need it to
-                feel more modern, more polished, and more trustworthy.
+                feel more modern, more polished, and easier to trust.
               </p>
 
               <div className="editorial-service-points">
@@ -131,10 +132,10 @@ function Services() {
                 </div>
 
                 <div>
-                  <span className="editorial-point-title">Includes</span>
+                  <span className="editorial-point-title">What improves</span>
                   <p>
-                    Layout cleanup, stronger typography, better spacing, visual
-                    polish, and mobile-focused improvements.
+                    Layout clarity, spacing, typography, visual polish, and the
+                    overall way your business is perceived online.
                   </p>
                 </div>
               </div>
@@ -149,7 +150,7 @@ function Services() {
           </article>
 
           <div className="services-editorial-cta">
-            <p className="section-kicker">Next step</p>
+            <p className="section-kicker">Next Step</p>
             <h2 className="services-cta-title">
               Let’s build something that fits your business properly
             </h2>

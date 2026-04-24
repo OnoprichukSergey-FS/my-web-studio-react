@@ -1,0 +1,216 @@
+.about-page-hero {
+  padding-bottom: 26px;
+}
+
+.about-hero-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  gap: 52px;
+  align-items: end;
+}
+
+.about-hero-side {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.about-hero-note {
+  width: 100%;
+  max-width: 390px;
+  border-radius: 30px;
+  padding: 24px 22px;
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
+  );
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.about-note-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+.about-hero-note p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.about-editorial-section {
+  padding-top: 74px;
+}
+
+.about-editorial-block {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+  margin-bottom: 48px;
+  border-radius: 36px;
+  padding: 36px 30px;
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
+  );
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.about-editorial-number {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  padding-top: 6px;
+}
+
+.about-editorial-label {
+  margin: 0 0 12px;
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+.about-editorial-main h2 {
+  margin: 0 0 18px;
+  font-size: clamp(36px, 4.2vw, 58px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.about-editorial-lead {
+  margin: 0 0 24px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 20px;
+  line-height: 1.75;
+}
+
+.about-editorial-points {
+  display: grid;
+  gap: 18px;
+}
+
+.about-editorial-points > div {
+  border-left: 1px solid var(--border);
+  padding-left: 16px;
+}
+
+.about-point-title {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+.about-editorial-points p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.about-editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 18px;
+}
+
+.about-feature-card {
+  border-radius: 30px;
+  padding: 28px 24px;
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
+  );
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.about-feature-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--soft);
+}
+
+.about-feature-card h3 {
+  margin: 0 0 10px;
+  font-size: 26px;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+}
+
+.about-feature-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.about-editorial-cta {
+  margin-top: 24px;
+  border-radius: 36px;
+  padding: 40px 34px;
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
+  );
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+@media (max-width: 920px) {
+  .about-hero-layout,
+  .about-editorial-block,
+  .about-editorial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-hero-side {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 700px) {
+  .about-editorial-block,
+  .about-editorial-cta {
+    padding: 28px 22px;
+    border-radius: 28px;
+  }
+
+  .about-feature-card {
+    padding: 24px 20px;
+    border-radius: 24px;
+  }
+
+  .about-editorial-main h2 {
+    font-size: 38px;
+  }
+
+  .about-editorial-lead {
+    font-size: 17px;
+  }
+}

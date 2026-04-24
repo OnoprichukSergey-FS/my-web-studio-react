@@ -1,0 +1,19 @@
+/* =========================
+   CONTAINER
+========================= */
+.container {
+  width: min(var(--max), calc(100% - 32px));
+  margin: 0 auto;
+}
+
+@media (max-width: 760px) {
+  .container {
+    width: calc(100% - 24px);
+  }
+}
+
+@media (max-width: 520px) {
+  .container {
+    width: calc(100% - 20px);
+  }
+}

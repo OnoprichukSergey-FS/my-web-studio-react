@@ -11,9 +11,9 @@ function Work() {
               Websites designed to elevate how businesses are seen online
             </h1>
             <p className="section-subtitle">
-              A curated selection of projects built to improve clarity,
-              presentation, trust, and the overall first impression a business
-              makes online.
+              A curated selection of projects built to improve presentation,
+              strengthen trust, and give each business a clearer and more
+              professional online presence.
             </p>
           </div>
 
@@ -21,8 +21,9 @@ function Work() {
             <div className="work-hero-note">
               <span className="work-note-label">What I focus on</span>
               <p>
-                Clean design, stronger structure, better service presentation,
-                and a more polished online presence for real businesses.
+                Better structure, stronger messaging, cleaner presentation, and
+                a site that feels more aligned with the quality of the business
+                behind it.
               </p>
             </div>
           </div>
@@ -50,18 +51,28 @@ function Work() {
 
               <div className="editorial-project-details">
                 <div>
-                  <span className="editorial-detail-title">Goal</span>
+                  <span className="editorial-detail-title">Challenge</span>
                   <p>
-                    Create a stronger online presence that clearly presents
-                    services and encourages estimate requests.
+                    The business needed a stronger online presence that made its
+                    services feel clear, trustworthy, and professional from the
+                    first impression.
                   </p>
                 </div>
 
                 <div>
                   <span className="editorial-detail-title">Direction</span>
                   <p>
-                    Dark, aggressive visual styling balanced with a clean layout
-                    and clear structure for trust and readability.
+                    Dark, aggressive styling balanced with cleaner layout
+                    structure, stronger hierarchy, and clear paths toward
+                    estimate requests.
+                  </p>
+                </div>
+
+                <div>
+                  <span className="editorial-detail-title">Outcome</span>
+                  <p>
+                    A more polished presentation that helps the business feel
+                    more established and easier to trust online.
                   </p>
                 </div>
               </div>
@@ -102,24 +113,34 @@ function Work() {
               <h2>Orlando Beauty Studio</h2>
 
               <p className="editorial-project-lead">
-                A softer, more refined website designed to give a beauty brand a
-                more premium and professional presentation online.
+                A refined beauty website designed to give the brand a more
+                elevated, elegant, and booking-friendly online presence.
               </p>
 
               <div className="editorial-project-details">
                 <div>
-                  <span className="editorial-detail-title">Goal</span>
+                  <span className="editorial-detail-title">Challenge</span>
                   <p>
-                    Present services more elegantly, support bookings, and make
-                    the brand feel more polished and established.
+                    The brand needed a site that presented services more
+                    beautifully and reflected the premium quality of the
+                    business.
                   </p>
                 </div>
 
                 <div>
                   <span className="editorial-detail-title">Direction</span>
                   <p>
-                    Calm visuals, better spacing, elegant typography, and a more
-                    elevated user experience overall.
+                    Softer visuals, better spacing, elegant typography, and a
+                    calmer overall experience built around trust and beauty
+                    brand presentation.
+                  </p>
+                </div>
+
+                <div>
+                  <span className="editorial-detail-title">Outcome</span>
+                  <p>
+                    A more polished digital presence that supports bookings and
+                    makes the business feel more established right away.
                   </p>
                 </div>
               </div>
@@ -166,18 +187,27 @@ function Work() {
 
               <div className="editorial-project-details">
                 <div>
-                  <span className="editorial-detail-title">Goal</span>
+                  <span className="editorial-detail-title">Challenge</span>
                   <p>
-                    Build a cleaner, more trustworthy service-business website
-                    that feels welcoming and easy to use.
+                    Build a service-business website that felt more trustworthy,
+                    more welcoming, and easier for customers to understand.
                   </p>
                 </div>
 
                 <div>
                   <span className="editorial-detail-title">Direction</span>
                   <p>
-                    Soft presentation, structured sections, and a layout
-                    designed to guide customers naturally toward booking.
+                    Softer presentation, structured sections, and cleaner visual
+                    flow designed to guide customers naturally toward booking.
+                  </p>
+                </div>
+
+                <div>
+                  <span className="editorial-detail-title">Outcome</span>
+                  <p>
+                    A concept that shows how stronger structure and more
+                    polished presentation can instantly improve perceived
+                    business quality.
                   </p>
                 </div>
               </div>
@@ -208,12 +238,12 @@ function Work() {
           <div className="work-bottom-cta">
             <p className="section-kicker">Need something similar?</p>
             <h2 className="services-cta-title">
-              Let’s create a site that makes your business feel more
-              established.
+              Let’s create a site that makes your business feel more established
             </h2>
             <p className="section-subtitle">
-              Whether you need a fresh start or a stronger redesign, I can help
-              you build a website that feels clear, modern, and credible.
+              If your current website feels outdated, unclear, or weaker than
+              your business deserves, I can help you build something more
+              polished and more credible.
             </p>
 
             <div className="services-cta-actions">

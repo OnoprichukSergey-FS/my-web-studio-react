@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function ProjectCard({
   image,
   alt,
@@ -8,9 +10,9 @@ export default function ProjectCard({
   liveLink,
 }) {
   return (
-    <article className="project-card">
+    <article className="project-card reveal-up">
       <div className="project-image">
-        <img src={image} alt={alt} />
+        <img src={image} alt={alt} loading="lazy" />
       </div>
 
       <div className="project-content">
@@ -34,9 +36,9 @@ export default function ProjectCard({
             View Project
           </a>
 
-          <a href="/contact" className="btn btn-primary btn-sm">
+          <Link to="/contact" className="btn btn-primary btn-sm">
             Request Similar
-          </a>
+          </Link>
         </div>
       </div>
     </article>
