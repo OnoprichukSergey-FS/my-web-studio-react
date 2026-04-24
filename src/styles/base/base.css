@@ -116,11 +116,8 @@ img,
 video,
 svg,
 canvas {
-  max-width: 100%;
-}
-
-img {
   display: block;
+  max-width: 100%;
 }
 
 a {
@@ -241,7 +238,7 @@ button {
 }
 
 /* =========================
-   MOBILE OVERFLOW + WHITE EDGE FIX
+   RESPONSIVE FOUNDATION
 ========================= */
 
 @media (max-width: 920px) {
@@ -284,57 +281,6 @@ button {
   .section-subtitle {
     font-size: 16px;
     line-height: 1.75;
-  }
-
-  .home-faq-section {
-    overflow: hidden;
-  }
-
-  .faq-modern {
-    max-width: 100%;
-    width: 100%;
-    gap: 12px;
-  }
-
-  .faq-modern-item {
-    border-radius: 22px;
-    border: 1px solid rgba(201, 168, 106, 0.25);
-    background: rgba(247, 241, 232, 0.035);
-    box-shadow: none;
-  }
-
-  .faq-modern-item.open {
-    background: rgba(201, 168, 106, 0.07);
-  }
-
-  .faq-modern-question {
-    padding: 18px;
-  }
-
-  .faq-modern-question span {
-    font-size: 16px;
-    line-height: 1.35;
-  }
-
-  .faq-modern-question strong {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-  }
-
-  .faq-modern-answer p {
-    padding: 0 18px 20px;
-    font-size: 15px;
-    line-height: 1.7;
-  }
-
-  .home-final-cta {
-    overflow: hidden;
-  }
-
-  .home-final-cta .services-cta-title {
-    font-size: clamp(32px, 10vw, 42px);
-    line-height: 1;
   }
 }
 
