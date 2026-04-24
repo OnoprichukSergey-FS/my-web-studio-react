@@ -1,6 +1,6 @@
 .hero {
   position: relative;
-  padding: 112px 0 112px;
+  padding: 112px 0;
   isolation: isolate;
   overflow: clip;
 }
@@ -121,7 +121,6 @@
   color: var(--accent);
 }
 
-.hero-screen-copy h3,
 .hero-device-screen h3 {
   margin: 0 0 14px;
   font-size: clamp(30px, 4vw, 44px);
@@ -130,7 +129,6 @@
   text-wrap: balance;
 }
 
-.hero-screen-copy p,
 .hero-device-screen p {
   margin: 0;
   color: var(--muted);
@@ -443,37 +441,39 @@
 }
 
 /* =========================
-   FAQ — CLEAN MOBILE FRIENDLY
+   FAQ — CLEAN FINAL VERSION
 ========================= */
 
 .faq-modern {
   display: grid;
   gap: 12px;
+  width: 100%;
   max-width: 880px;
   margin-top: 42px;
 }
 
 .faq-modern-item {
-  border-radius: 22px;
-  border: 1px solid rgba(247, 241, 232, 0.1);
-  background: rgba(247, 241, 232, 0.035);
   overflow: hidden;
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.18);
+  border-radius: 20px;
+  border: 1px solid rgba(247, 241, 232, 0.09);
+  background: rgba(247, 241, 232, 0.028);
+  box-shadow: none;
 }
 
 .faq-modern-item.open {
-  border-color: rgba(201, 168, 106, 0.34);
+  border-color: rgba(201, 168, 106, 0.32);
   background: rgba(201, 168, 106, 0.055);
 }
 
 .faq-modern-question {
   width: 100%;
-  min-height: 76px;
+  min-height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  padding: 22px 24px;
+  gap: 16px;
+  padding: 20px 22px;
+  border: 0;
   text-align: left;
   color: var(--text);
   background: transparent;
@@ -481,23 +481,23 @@
 
 .faq-modern-question span {
   color: var(--text);
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   line-height: 1.35;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.02em;
 }
 
 .faq-modern-question strong {
-  width: 34px;
-  height: 34px;
-  min-width: 34px;
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
   border-radius: 999px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(201, 168, 106, 0.35);
+  border: 1px solid rgba(201, 168, 106, 0.28);
   color: var(--accent);
-  background: rgba(201, 168, 106, 0.07);
-  font-size: 18px;
+  background: rgba(201, 168, 106, 0.06);
+  font-size: 17px;
   line-height: 1;
 }
 
@@ -517,7 +517,7 @@
 
 .faq-modern-answer p {
   margin: 0;
-  padding: 0 24px 24px;
+  padding: 0 22px 22px;
   color: rgba(247, 241, 232, 0.68);
   font-size: 16px;
   line-height: 1.7;
@@ -586,7 +586,7 @@
 
 @media (max-width: 700px) {
   .hero {
-    padding: 72px 0 72px;
+    padding: 72px 0;
   }
 
   .hero h1 {
@@ -656,36 +656,36 @@
   }
 
   .faq-modern {
-    gap: 12px;
-    margin-top: 34px;
+    gap: 10px;
+    max-width: 100%;
+    margin-top: 32px;
   }
 
   .faq-modern-item {
-    border-radius: 18px;
-    box-shadow: none;
+    border-radius: 16px;
   }
 
   .faq-modern-question {
     min-height: auto;
-    padding: 18px 16px;
-    gap: 14px;
+    padding: 16px 14px;
+    gap: 12px;
   }
 
   .faq-modern-question span {
-    font-size: 16px;
+    font-size: 15px;
     line-height: 1.35;
   }
 
   .faq-modern-question strong {
-    width: 28px;
-    height: 28px;
-    min-width: 28px;
-    font-size: 16px;
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    font-size: 15px;
   }
 
   .faq-modern-answer p {
-    padding: 0 16px 18px;
-    font-size: 15px;
+    padding: 0 14px 16px;
+    font-size: 14px;
     line-height: 1.65;
   }
 
