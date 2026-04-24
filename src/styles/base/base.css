@@ -1,5 +1,22 @@
+/* =========================
+   BASE / SITE FOUNDATION
+========================= */
+
+html {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  background: var(--bg);
+}
+
 body {
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
   font-family: "Inter", sans-serif;
   color: var(--text);
   line-height: 1.6;
@@ -15,6 +32,9 @@ body {
     ),
     linear-gradient(180deg, #080706 0%, #11100e 48%, #080706 100%);
   -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body::before {
@@ -63,9 +83,27 @@ body::after {
     );
 }
 
-::selection {
-  background: rgba(201, 168, 106, 0.28);
-  color: var(--white);
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: transparent;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+main,
+section,
+div,
+article,
+header,
+footer {
+  min-width: 0;
 }
 
 main {
@@ -74,8 +112,44 @@ main {
   overflow-x: hidden;
 }
 
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+}
+
+img {
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: rgba(201, 168, 106, 0.28);
+  color: var(--white);
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
 .container {
   width: min(var(--max), calc(100% - 32px));
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -121,6 +195,10 @@ main {
     );
 }
 
+/* =========================
+   TYPOGRAPHY
+========================= */
+
 .section-kicker,
 .eyebrow {
   display: inline-flex;
@@ -162,6 +240,10 @@ main {
   text-wrap: pretty;
 }
 
+/* =========================
+   MOBILE OVERFLOW + WHITE EDGE FIX
+========================= */
+
 @media (max-width: 920px) {
   .section,
   .section-alt {
@@ -174,6 +256,17 @@ main {
 }
 
 @media (max-width: 700px) {
+  html,
+  body,
+  #root {
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: calc(100% - 32px);
+    max-width: 100%;
+  }
+
   .section,
   .section-alt {
     padding: 82px 0;
@@ -185,10 +278,72 @@ main {
 
   .section-title {
     font-size: 34px;
+    line-height: 1;
   }
 
   .section-subtitle {
     font-size: 16px;
     line-height: 1.75;
+  }
+
+  .home-faq-section {
+    overflow: hidden;
+  }
+
+  .faq-modern {
+    max-width: 100%;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .faq-modern-item {
+    border-radius: 22px;
+    border: 1px solid rgba(201, 168, 106, 0.25);
+    background: rgba(247, 241, 232, 0.035);
+    box-shadow: none;
+  }
+
+  .faq-modern-item.open {
+    background: rgba(201, 168, 106, 0.07);
+  }
+
+  .faq-modern-question {
+    padding: 18px;
+  }
+
+  .faq-modern-question span {
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .faq-modern-question strong {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+  }
+
+  .faq-modern-answer p {
+    padding: 0 18px 20px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .home-final-cta {
+    overflow: hidden;
+  }
+
+  .home-final-cta .services-cta-title {
+    font-size: clamp(32px, 10vw, 42px);
+    line-height: 1;
+  }
+}
+
+/* =========================
+   ACCESSIBILITY
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
