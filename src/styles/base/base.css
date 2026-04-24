@@ -17,6 +17,7 @@ body {
   max-width: 100%;
   min-height: 100%;
   overflow-x: hidden;
+  padding-top: 88px;
   font-family: "Inter", sans-serif;
   color: var(--text);
   line-height: 1.6;
@@ -242,6 +243,10 @@ button {
 ========================= */
 
 @media (max-width: 920px) {
+  body {
+    padding-top: 82px;
+  }
+
   .section,
   .section-alt {
     padding: 96px 0;
@@ -257,6 +262,10 @@ button {
   body,
   #root {
     overflow-x: hidden;
+  }
+
+  body {
+    padding-top: 78px;
   }
 
   .container {

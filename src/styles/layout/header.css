@@ -1,6 +1,12 @@
+/* =========================
+   HEADER / NAVIGATION
+========================= */
+
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 9999;
   width: 100%;
   border-bottom: 1px solid rgba(247, 241, 232, 0.08);
@@ -20,13 +26,19 @@
 }
 
 .logo,
-.premium-logo {
+.logo:visited,
+.logo:hover,
+.logo:focus,
+.premium-logo,
+.premium-logo:visited,
+.premium-logo:hover,
+.premium-logo:focus {
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
   color: var(--text);
   text-decoration: none;
-  min-width: 0;
 }
 
 .logo *,
@@ -47,6 +59,7 @@
   flex-direction: column;
   gap: 3px;
   min-width: 0;
+  line-height: 1.05;
 }
 
 .logo-kicker {
@@ -144,7 +157,7 @@
   height: 46px;
   padding: 0;
   border: 1px solid rgba(201, 168, 106, 0.28);
-  border-radius: 999px;
+  border-radius: 50%;
   background: rgba(247, 241, 232, 0.04);
   align-items: center;
   justify-content: center;
@@ -173,6 +186,10 @@
 .nav-toggle.open span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
 }
+
+/* =========================
+   MOBILE NAV
+========================= */
 
 @media (max-width: 920px) {
   .header-inner,
@@ -256,6 +273,7 @@
 
   .logo-kicker {
     font-size: 9px;
+    letter-spacing: 0.18em;
   }
 
   .header-inner,
@@ -263,8 +281,21 @@
     min-height: 78px;
   }
 
+  .nav-toggle {
+    width: 48px;
+    height: 48px;
+  }
+
+  .nav-toggle span {
+    width: 18px;
+    height: 2px;
+  }
+
   .nav-links,
   .premium-nav-links {
     top: 88px;
+    left: 16px;
+    right: 16px;
+    border-radius: 20px;
   }
 }
