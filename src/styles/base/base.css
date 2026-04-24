@@ -17,7 +17,7 @@ body {
   max-width: 100%;
   min-height: 100%;
   overflow-x: hidden;
-  padding-top: 88px;
+  padding-top: 78px;
   font-family: "Inter", sans-serif;
   color: var(--text);
   line-height: 1.6;
@@ -265,7 +265,7 @@ button {
   }
 
   body {
-    padding-top: 78px;
+    padding-top: 76px;
   }
 
   .container {
