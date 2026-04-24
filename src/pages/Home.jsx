@@ -211,9 +211,6 @@ function Home() {
           </div>
 
           <div className="hero-premium-visual reveal-up reveal-delay-1">
-            <div className="hero-orb hero-orb-one" />
-            <div className="hero-orb hero-orb-two" />
-
             <div className="hero-device-frame">
               <div className="hero-device-topbar">
                 <span className="hero-window-dot" />
@@ -222,43 +219,19 @@ function Home() {
               </div>
 
               <div className="hero-device-screen">
-                <div className="hero-screen-copy">
-                  <p className="hero-screen-kicker">Studio Preview</p>
-                  <h3>Clean websites built to elevate your business online</h3>
-                  <p>
-                    Clear structure, polished visuals, and a site that feels
-                    easy to trust.
-                  </p>
+                <p className="hero-screen-kicker">Studio Preview</p>
+                <h3>Clean websites built to elevate your business online</h3>
+                <p>
+                  Clear structure, polished visuals, and a site that feels easy
+                  to trust.
+                </p>
 
-                  <div className="hero-mini-tags">
-                    <span>Custom design</span>
-                    <span>Responsive</span>
-                    <span>Lead-focused</span>
-                  </div>
-                </div>
-
-                <div className="hero-preview-window">
-                  <div className="hero-preview-header" />
-                  <div className="hero-preview-hero" />
-                  <div className="hero-preview-lines">
-                    <span />
-                    <span />
-                    <span />
-                  </div>
-                  <div className="hero-preview-cards">
-                    <div />
-                    <div />
-                    <div />
-                  </div>
+                <div className="hero-mini-tags">
+                  <span>Custom design</span>
+                  <span>Responsive</span>
+                  <span>Lead-focused</span>
                 </div>
               </div>
-            </div>
-
-            <div className="hero-floating-metric">
-              <span className="hero-floating-label">Best fit</span>
-              <p>
-                Beauty brands, service businesses, studios, and local brands.
-              </p>
             </div>
           </div>
         </div>
@@ -361,6 +334,41 @@ function Home() {
             <Link to="/work" className="btn btn-secondary">
               View All Work
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section home-founder-section">
+        <div className="container">
+          <div className="founder-card reveal-up">
+            <div className="founder-image">
+              <img
+                src="/sergey-founder.jpg"
+                alt="Sergey from Onoprichuk Web Studio"
+              />
+            </div>
+
+            <div className="founder-copy">
+              <p className="section-kicker">About the Studio</p>
+              <h2 className="section-title">
+                A personal studio for small businesses that need a stronger
+                website.
+              </h2>
+              <p className="section-subtitle">
+                I’m Sergey, the designer and developer behind Onoprichuk Web
+                Studio. I build clean, modern websites for businesses that want
+                to look more professional, trustworthy, and established online.
+              </p>
+
+              <div className="founder-actions">
+                <Link to="/about" className="btn btn-secondary">
+                  More About Me
+                </Link>
+                <Link to="/contact" className="btn btn-primary">
+                  Start a Project
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -3,157 +3,182 @@ import { Link } from "react-router-dom";
 function About() {
   return (
     <main id="top">
-      <section className="page-hero about-page-hero">
+      <section className="page-hero about-hero">
         <div className="container about-hero-layout">
-          <div className="about-hero-copy">
-            <p className="section-kicker">About</p>
-            <h1 className="section-title">
-              A clean, practical approach to websites that feel more credible
+          <div className="about-hero-copy reveal-up">
+            <p className="section-kicker">About the Studio</p>
+
+            <h1>
+              A personal web studio built around clean design, real business
+              needs, and polished online presence.
             </h1>
-            <p className="section-subtitle">
-              I build modern websites for small businesses that want to look
-              more professional, present their services clearly, and make a
-              stronger first impression online.
+
+            <p>
+              Onoprichuk Web Studio helps small businesses create websites that
+              feel more professional, clear, and trustworthy from the first
+              impression.
             </p>
           </div>
 
-          <div className="about-hero-side">
-            <div className="about-hero-note">
-              <span className="about-note-label">What I care about</span>
+          <div className="about-hero-image reveal-up reveal-delay-1">
+            <img
+              src="/sergey-founder.jpg"
+              alt="Sergey from Onoprichuk Web Studio"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="section about-founder-section">
+        <div className="container">
+          <div className="about-founder-card reveal-up">
+            <div className="about-founder-label">
+              <span>Founder / Designer / Developer</span>
+            </div>
+
+            <div className="about-founder-content">
+              <h2>Hi, I’m Sergey.</h2>
+
               <p>
-                Clear structure, thoughtful design, strong presentation, and a
-                site that feels like it properly matches the quality of the
-                business behind it.
+                I’m the designer and developer behind Onoprichuk Web Studio. I
+                have about three years of hands-on experience working with front
+                end development, back end development, APIs, mobile apps, and
+                custom website builds.
               </p>
+
+              <p>
+                My focus is creating clean, modern websites that help small
+                businesses look more established online. I care about structure,
+                spacing, mobile polish, clear messaging, and making the final
+                site feel aligned with the quality of the business behind it.
+              </p>
+
+              <p>
+                Instead of using a generic template, I build with the business
+                in mind — what they offer, who they serve, and how their website
+                should make people feel when they land on it.
+              </p>
+
+              <div className="about-founder-actions">
+                <Link to="/work" className="btn btn-secondary">
+                  View My Work
+                </Link>
+                <Link to="/contact" className="btn btn-primary">
+                  Start a Project
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="section about-editorial-section">
+      <section className="section section-alt about-skills-section">
         <div className="container">
-          <article className="about-editorial-block">
-            <div className="about-editorial-number">01</div>
-
-            <div className="about-editorial-main">
-              <p className="about-editorial-label">Who I am</p>
-              <h2>Focused on helping small businesses look stronger online</h2>
-              <p className="about-editorial-lead">
-                I’m Sergey Onoprichuk, a web developer based in Orlando,
-                Florida. I focus on building clean, modern websites for small
-                businesses that need a stronger and more professional online
-                presence.
-              </p>
-
-              <div className="about-editorial-points">
-                <div>
-                  <span className="about-point-title">What I noticed</span>
-                  <p>
-                    Many small business websites do not feel weak because they
-                    lack features — they feel weak because they look outdated,
-                    cluttered, or unclear.
-                  </p>
-                </div>
-
-                <div>
-                  <span className="about-point-title">What I focus on</span>
-                  <p>
-                    I help improve that through better structure, stronger
-                    visual presentation, and a simpler path for customers to
-                    understand the business and take action.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article className="about-editorial-block">
-            <div className="about-editorial-number">02</div>
-
-            <div className="about-editorial-main">
-              <p className="about-editorial-label">Approach</p>
-              <h2>Built around clarity, not unnecessary complexity</h2>
-              <p className="about-editorial-lead">
-                My goal is to make the process feel simple for clients while
-                creating something that looks polished, modern, and easy to
-                trust.
-              </p>
-
-              <div className="about-editorial-points">
-                <div>
-                  <span className="about-point-title">How I work</span>
-                  <p>
-                    I keep communication straightforward, focus on the
-                    essentials, and avoid overcomplicating projects with things
-                    that do not actually improve the result.
-                  </p>
-                </div>
-
-                <div>
-                  <span className="about-point-title">Why it matters</span>
-                  <p>
-                    A business website should not just exist — it should help
-                    the business feel established, easier to understand, and
-                    more credible right away.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <section className="about-editorial-grid">
-            <article className="about-feature-card">
-              <span className="about-feature-label">Based in</span>
-              <h3>Orlando, FL</h3>
-              <p>Local understanding with a modern digital-first approach.</p>
-            </article>
-
-            <article className="about-feature-card">
-              <span className="about-feature-label">Focus</span>
-              <h3>Small business websites</h3>
-              <p>
-                Especially service-based businesses that need stronger
-                presentation online.
-              </p>
-            </article>
-
-            <article className="about-feature-card">
-              <span className="about-feature-label">Tools</span>
-              <h3>React, JavaScript, HTML, CSS</h3>
-              <p>
-                Modern front-end development focused on clean, responsive
-                builds.
-              </p>
-            </article>
-
-            <article className="about-feature-card">
-              <span className="about-feature-label">Goal</span>
-              <h3>Make your business look more established</h3>
-              <p>
-                Better structure, stronger visuals, and a more polished online
-                presence.
-              </p>
-            </article>
-          </section>
-
-          <div className="about-editorial-cta">
-            <p className="section-kicker">Next Step</p>
-            <h2 className="services-cta-title">
-              Let’s build something that feels like a better fit for your
-              business
+          <div className="home-section-heading reveal-up">
+            <p className="section-kicker">Experience</p>
+            <h2 className="section-title">
+              A mix of design, development, and real project experience
             </h2>
             <p className="section-subtitle">
-              Whether you need a new website or want to improve the one you
-              already have, I can help you create something that feels clearer,
-              more modern, and more credible.
+              I work across the parts of a website that matter most: how it
+              looks, how it works, how it feels on mobile, and how clearly it
+              presents the business.
             </p>
+          </div>
 
-            <div className="services-cta-actions">
+          <div className="about-skills-grid">
+            <article className="about-skill-card reveal-up reveal-delay-1">
+              <span>01</span>
+              <h3>Front End Development</h3>
+              <p>
+                Building responsive, polished interfaces with clean layouts,
+                smooth styling, and strong attention to how the site feels
+                across screen sizes.
+              </p>
+            </article>
+
+            <article className="about-skill-card reveal-up reveal-delay-2">
+              <span>02</span>
+              <h3>Back End & APIs</h3>
+              <p>
+                Experience connecting websites to data, routes, forms, external
+                services, APIs, and back end logic when a project needs more
+                than a static page.
+              </p>
+            </article>
+
+            <article className="about-skill-card reveal-up reveal-delay-3">
+              <span>03</span>
+              <h3>Mobile App Experience</h3>
+              <p>
+                Hands-on experience with mobile app concepts and mobile-first
+                thinking, which helps every website feel cleaner and easier to
+                use on phones.
+              </p>
+            </article>
+
+            <article className="about-skill-card reveal-up reveal-delay-1">
+              <span>04</span>
+              <h3>Business-Focused Design</h3>
+              <p>
+                Designing pages around clarity, trust, service presentation, and
+                the first impression a potential customer gets from the brand.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="section about-approach-section">
+        <div className="container">
+          <div className="about-approach-grid">
+            <div className="about-approach-copy reveal-up">
+              <p className="section-kicker">My Approach</p>
+              <h2 className="section-title">
+                Simple, modern, and built to make your business look stronger.
+              </h2>
+            </div>
+
+            <div className="about-approach-list reveal-up reveal-delay-1">
+              <div>
+                <h3>Clean over cluttered</h3>
+                <p>
+                  I focus on strong spacing, clear sections, and a layout that
+                  feels easy to understand.
+                </p>
+              </div>
+
+              <div>
+                <h3>Polished but not overwhelming</h3>
+                <p>
+                  The goal is not random effects. The goal is a website that
+                  feels professional, trustworthy, and intentional.
+                </p>
+              </div>
+
+              <div>
+                <h3>Built around your business</h3>
+                <p>
+                  Every page should help people understand what you offer and
+                  why they should trust you.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="about-final-cta reveal-up">
+            <p className="section-kicker">Ready when you are</p>
+            <h2>
+              If your website does not reflect the quality of your business, I
+              can help.
+            </h2>
+
+            <div className="about-final-actions">
               <Link to="/contact" className="btn btn-primary">
                 Start a Project
               </Link>
-              <Link to="/work" className="btn btn-secondary">
-                View Work
+              <Link to="/services" className="btn btn-secondary">
+                View Services
               </Link>
             </div>
           </div>
